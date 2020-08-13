@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: LEDSerialExpanderBoard
+Version: 0.1
+Summary: Driver for Expander Board
+Home-page: https://github.com/branko623/LEDSerialExpanderBoard
+Author: Branko Mirkovic
+Author-email: branko623@gmail.com
+License: MIT
+Project-URL: Documentation, https://github.com/branko623/LEDSerialExpanderBoard
+Project-URL: Code, https://github.com/branko623/LEDSerialExpanderBoard
+Project-URL: Issue tracker, branko623/LEDSerialExpanderBoard/issues
+Description: Drive LEDs with Expander Board
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: docs
