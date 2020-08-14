@@ -90,6 +90,6 @@ If you are not seeing the orange on the expander board (valid data recieved), th
 
 <ul>
 <li>Make sure that ground is continuous across your strip, the expander board, and your pi (or other device), and all other wiring in order.</li> 
-<li>Your UART interface may not be turned on, or may be set to a different port. You can test using an application called minicom, connecting your UX and RX pins on your board, and opening two terminals, the TX controlled by your TX port (like /dev/ttyS0) with command: <code>minicom -b 9600 -o -D /dev/ttyS0</code> and RX connected to your RX port (usually /dev/serial0) with command: <code>minicom -b 9600 -o -D /dev/serial0</code> Typing anything into the TX terminal should echo back on the RX window.</li> 
+<li>Your UART interface may not be turned on, or may be set to a different port. You can test using an application called minicom ( <code>sudo apt-get install minicom</code> ), connecting your UX and RX pins on your board, and opening two terminals, the TX controlled by your TX port (like /dev/ttyS0) with command: <code>minicom -b 9600 -o -D /dev/ttyS0</code> and RX connected to your RX port (usually /dev/serial0) with command: <code>minicom -b 9600 -o -D /dev/serial0</code> Typing anything into the TX terminal should echo back on the RX window.</li> 
 <li>The default baudrate is not syncing. Set to a different rate.</li> 
 </ul>
