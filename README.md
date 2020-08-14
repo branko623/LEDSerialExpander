@@ -29,9 +29,9 @@ import LEDSerialExpanderBoard
 
 Configure your strip with a dictionary, with the keys as the board pin numbers: 
 ```python
-strips = {{0: 'size':80, 'order': 'RGB' ,'type':1},
-          {1: 'size':30, 'order': 'RGBW' ,'type':1},
-          {4: 'size':72, 'order': 'RGB' ,'type':1}}
+strips = {0: {'size':80, 'order': 'RGB' ,'type':1},
+          1: {'size':30, 'order': 'RGBW' ,'type':1},
+          4: {'size':72, 'order': 'RGB' ,'type':1}}
 
 display = LEDSerialExpanderBoard (strips)
 ```
@@ -42,6 +42,7 @@ Pass data to be written either by a bytearray() that contains data for all strip
 ```python
 data = bytearray([0 for _ in range(576)]) 
 #your code to manipulate data
+
 display.write(data)
 ```
 
@@ -49,25 +50,33 @@ or alternatively, pass a dict with individual channels as keys containing their 
 
 ```python
 data_dict = {0: data1,
-	     1: data2,
-	     4: data3}
+             1: data2,
+             4: data3}
 
 display.write(data_dict) 
 ```
 
 Other Parameters
 -------------------
+<ul>
+<li>
 uart:
 default: "/dev/ttyS0"
 This controls the uart tx port. Raspberry pi 3, 4, and zero W all use the default above. Others might use "/dev/ttyAMA0". 
+</li>
 
+<li>
 baud:
 default: 2000000
 The baudrate is the speed at which the serial connection operates. It has been discovered that for RPI ZERO W, a baudrate of 2304000 (a standard baudrate multiple) was needed for the connection to work, while on the PI 4, only 2000000 worked. Others remain untested.
+</li>
 
+<li>
 fps_show:
 default: False
 If set to True, this will print the FPS being displayed every second to the console
+</li>
+</ul>
 
 Notes on fast framerates:
 -------------------
@@ -78,6 +87,9 @@ Also keep in mind that the baudrate will bottleneck the framerate for larger arr
 Troubleshooting:
 ------------------- 
 If you are not seeing the orange on the expander board (valid data recieved), things to check: 
-A: Make sure that ground is continuous across your strip, the expander board, and your pi (or other device), and all other wiring in order. 
-B: Your UART interface may not be turned on, or may be set to a different port. You can test using an application called minicom, connecting your UX and RX pins on your board, and opening two terminals, the TX controlled by your TX port (like /dev/ttyS0) with command: minicom -b 9600 -o -D /dev/ttyS0 and RX connected to your RX port (usually /dev/serial0) with command: minicom -b 9600 -o -D /dev/serial0. Typing anything into the TX terminal should echo back on the RX window. 
-C: The default baudrate is not syncing. Set to a different rate. 
+
+<ul>
+<li>1: Make sure that ground is continuous across your strip, the expander board, and your pi (or other device), and all other wiring in order.</li> 
+<li>2: Your UART interface may not be turned on, or may be set to a different port. You can test using an application called minicom, connecting your UX and RX pins on your board, and opening two terminals, the TX controlled by your TX port (like /dev/ttyS0) with command: minicom -b 9600 -o -D /dev/ttyS0 and RX connected to your RX port (usually /dev/serial0) with command: minicom -b 9600 -o -D /dev/serial0. Typing anything into the TX terminal should echo back on the RX window.</li> 
+<li>3: The default baudrate is not syncing. Set to a different rate.</li> 
+</ul>
