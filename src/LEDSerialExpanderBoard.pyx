@@ -3,9 +3,9 @@ Driver for the LED Serial Expander Board for Pixelblaze
 Lets you use board in similar fashion to that of neopixel_write()
 Configure your strip with a dictionary, with the keys as the board pin numbers: 
 
-strips = {{0: 'size':80, 'order': 'RGB' ,'type':1},
-          {1: 'size':30, 'order': 'RGBW' ,'type':1},
-          {4: 'size':72, 'order': 'RGB' ,'type':1}}
+strips = {0: {'size':80, 'order': 'RGB' ,'type':1},
+          1: {'size':30, 'order': 'RGBW' ,'type':1},
+          4: {'size':72, 'order': 'RGB' ,'type':1}}
 
 display = LEDSerialExpanderBoard (strips)
 
