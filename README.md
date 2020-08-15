@@ -13,18 +13,14 @@ Installation
 -------------------
 
 ```bash
-pip install --user cython-package-example
-```
-or compile with cython:
-```bash
-compile code
+python3 -m pip install LEDSerialExpander
 ```
 
 Usage
 -------------------
 Import the Library:
 ```python
-import LEDSerialExpanderBoard
+from LEDSerialExpander import LEDSerialExpander
 ```
 
 Configure your strip with a dictionary, with the keys as the board pin numbers: 
@@ -33,7 +29,7 @@ strips = {0: {'size':80, 'order': 'RGB' ,'type':1},
           1: {'size':30, 'order': 'RGBW' ,'type':1},
           4: {'size':72, 'order': 'RGB' ,'type':1}}
 
-display = LEDSerialExpanderBoard (strips)
+display = LEDSerialExpander(strips)
 ```
 The type:1 indicated is for WS281x strips, which are the only ones that this driver currently supports.
 
@@ -55,6 +51,8 @@ data_dict = {0: data1,
 
 display.write(data_dict) 
 ```
+
+For a working example, check example.py
 
 Other Parameters
 -------------------
