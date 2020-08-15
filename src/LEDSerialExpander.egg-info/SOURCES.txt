@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+src/LEDSerialExpander.c
+src/LEDSerialExpander.pyx
+src/LEDSerialExpander.egg-info/PKG-INFO
+src/LEDSerialExpander.egg-info/SOURCES.txt
+src/LEDSerialExpander.egg-info/dependency_links.txt
+src/LEDSerialExpander.egg-info/not-zip-safe
+src/LEDSerialExpander.egg-info/requires.txt
+src/LEDSerialExpander.egg-info/top_level.txt

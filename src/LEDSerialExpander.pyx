@@ -290,8 +290,8 @@ class LEDSerialExpander:
         #self.__send(self.draw_all)
         
         #Timing
-        if self.send_speed > .0036: 
-            self.send_speed = .0036
+        if self.send_speed > .0034: 
+            self.send_speed = .0034
         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
         now = time.time()
         #print ("when: %s"%when)
@@ -309,7 +309,7 @@ class LEDSerialExpander:
             if wait < 0:
                 wait = 0
 
-            time.sleep(wait+.0001) #add cushion
+            time.sleep(wait+.0003) #add cushion
             
         self.draw_time = time.time()
         self.__send()

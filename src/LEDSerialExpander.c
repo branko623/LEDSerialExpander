@@ -2575,8 +2575,8 @@ static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject 
 static PyObject *__pyx_tp_new__memoryviewslice(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static __Pyx_CachedCFunction __pyx_umethod_PyByteArray_Type_extend = {0, &__pyx_n_s_extend, 0, 0, 0};
 static PyObject *__pyx_float_0_8;
-static PyObject *__pyx_float__0001;
-static PyObject *__pyx_float__0036;
+static PyObject *__pyx_float__0003;
+static PyObject *__pyx_float__0034;
 static PyObject *__pyx_float__0072;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
@@ -5805,13 +5805,13 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   /* "LEDSerialExpander.pyx":293
  * 
  *         #Timing
- *         if self.send_speed > .0036:             # <<<<<<<<<<<<<<
- *             self.send_speed = .0036
+ *         if self.send_speed > .0034:             # <<<<<<<<<<<<<<
+ *             self.send_speed = .0034
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_send_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_float__0036, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_float__0034, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5819,25 +5819,25 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
 
     /* "LEDSerialExpander.pyx":294
  *         #Timing
- *         if self.send_speed > .0036:
- *             self.send_speed = .0036             # <<<<<<<<<<<<<<
+ *         if self.send_speed > .0034:
+ *             self.send_speed = .0034             # <<<<<<<<<<<<<<
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  *         now = time.time()
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_float__0036) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_float__0034) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
 
     /* "LEDSerialExpander.pyx":293
  * 
  *         #Timing
- *         if self.send_speed > .0036:             # <<<<<<<<<<<<<<
- *             self.send_speed = .0036
+ *         if self.send_speed > .0034:             # <<<<<<<<<<<<<<
+ *             self.send_speed = .0034
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  */
   }
 
   /* "LEDSerialExpander.pyx":295
- *         if self.send_speed > .0036:
- *             self.send_speed = .0036
+ *         if self.send_speed > .0034:
+ *             self.send_speed = .0034
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send             # <<<<<<<<<<<<<<
  *         now = time.time()
  *         #print ("when: %s"%when)
@@ -5860,7 +5860,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   __pyx_t_2 = 0;
 
   /* "LEDSerialExpander.pyx":296
- *             self.send_speed = .0036
+ *             self.send_speed = .0034
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  *         now = time.time()             # <<<<<<<<<<<<<<
  *         #print ("when: %s"%when)
@@ -5930,7 +5930,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
  *             if wait < 0:
  *                 wait = 0             # <<<<<<<<<<<<<<
  * 
- *             time.sleep(wait+.0001) #add cushion
+ *             time.sleep(wait+.0003) #add cushion
  */
       __Pyx_INCREF(__pyx_int_0);
       __Pyx_DECREF_SET(__pyx_v_wait, __pyx_int_0);
@@ -5947,7 +5947,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
     /* "LEDSerialExpander.pyx":312
  *                 wait = 0
  * 
- *             time.sleep(wait+.0001) #add cushion             # <<<<<<<<<<<<<<
+ *             time.sleep(wait+.0003) #add cushion             # <<<<<<<<<<<<<<
  * 
  *         self.draw_time = time.time()
  */
@@ -5956,7 +5956,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
     __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sleep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyFloat_AddObjC(__pyx_v_wait, __pyx_float__0001, .0001, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyFloat_AddObjC(__pyx_v_wait, __pyx_float__0003, .0003, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -5986,7 +5986,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   }
 
   /* "LEDSerialExpander.pyx":314
- *             time.sleep(wait+.0001) #add cushion
+ *             time.sleep(wait+.0003) #add cushion
  * 
  *         self.draw_time = time.time()             # <<<<<<<<<<<<<<
  *         self.__send()
@@ -21161,8 +21161,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_umethod_PyByteArray_Type_extend.type = (PyObject*)&PyByteArray_Type;
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_float_0_8 = PyFloat_FromDouble(0.8); if (unlikely(!__pyx_float_0_8)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float__0001 = PyFloat_FromDouble(.0001); if (unlikely(!__pyx_float__0001)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_float__0036 = PyFloat_FromDouble(.0036); if (unlikely(!__pyx_float__0036)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float__0003 = PyFloat_FromDouble(.0003); if (unlikely(!__pyx_float__0003)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float__0034 = PyFloat_FromDouble(.0034); if (unlikely(!__pyx_float__0034)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_float__0072 = PyFloat_FromDouble(.0072); if (unlikely(!__pyx_float__0072)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
