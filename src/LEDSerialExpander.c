@@ -2322,7 +2322,7 @@ static const char __pyx_k_Non_ws281x_not_supported_yet[] = "Non ws281x not suppo
 static const char __pyx_k_self_buffer_after_all_that_s[] = "self.buffer after all that %s";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
-static const char __pyx_k_Driver_for_the_LED_Serial_Expan[] = "\nDriver for the LED Serial Expander Board for Pixelblaze\nLets you use board in similar fashion to that of neopixel_write()\nConfigure your strip with a dictionary, with the keys as the board pin numbers: \n\nstrips = {0: {'size':80, 'order': 'RGB' ,'type':1},\n          1: {'size':30, 'order': 'RGBW' ,'type':1},\n          4: {'size':72, 'order': 'RGB' ,'type':1}}\n\ndisplay = LEDSerialExpanderBoard (strips)\n\nThe type:1 indicated is for WS281x strips, which are the only ones that this driver currently supports.\n\nPass data to be written either by a bytearray() that contains data for all strips in channel-sequential order:\n\ndata = bytearray([0 for _ in range(576)]) \n#your code to manipulate data\ndisplay.write(data)\n\nor alternatively, pass a dict with individual channels as keys containing their own bytearrays: \n\ndata_dict = {0: data1,\n\t     1: data2,\n\t     4: data3}\n\ndisplay.write(data_dict) \n";
+static const char __pyx_k_Driver_for_the_LED_Serial_Expan[] = "\nDriver for the LED Serial Expander Board for Pixelblaze\nLets you use board in similar fashion to that of neopixel_write()\n\nFirst Import: \n\nfrom LEDSerialExpander import LEDSerialExpander\n\nConfigure your strip with a dictionary, with the keys as the board pin numbers: \n\nstrips = {0: {'size':80, 'order': 'RGB' ,'type':1},\n          1: {'size':30, 'order': 'RGBW' ,'type':1},\n          4: {'size':72, 'order': 'RGB' ,'type':1}}\n\ndisplay = LEDSerialExpander(strips)\n\nThe type:1 indicated is for WS281x strips, which are the only ones that this driver currently supports.\n\nPass data to be written either by a bytearray() that contains data for all strips in channel-sequential order:\n\ndata = bytearray([0 for _ in range(576)]) \n#your code to manipulate data\ndisplay.write(data)\n\nor alternatively, pass a dict with individual channels as keys containing their own bytearrays: \n\ndata_dict = {0: data1,\n\t     1: data2,\n\t     4: data3}\n\ndisplay.write(data_dict) \n";
 static const char __pyx_k_Each_channel_supports_up_to_800[] = "Each channel supports up to 800 RGB or 600 RGBW pixels";
 static const char __pyx_k_channel_s_color_order_must_be_3[] = "channel: %s : color_order must be 3 or 4 items";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
@@ -2888,7 +2888,7 @@ static PyObject *__pyx_codeobj__33;
 static PyObject *__pyx_codeobj__40;
 /* Late includes */
 
-/* "LEDSerialExpander.pyx":88
+/* "LEDSerialExpander.pyx":93
  * # calculates crc32 from b_pointer to b_pointer+length
  * # then memcpy that crc in the following 4 bytes
  * cdef void crc(unsigned char* b_pointer, int length):             # <<<<<<<<<<<<<<
@@ -2913,7 +2913,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("crc", 0);
 
-  /* "LEDSerialExpander.pyx":91
+  /* "LEDSerialExpander.pyx":96
  * 
  *     cdef int i
  *     cdef int tbl_idx = 0             # <<<<<<<<<<<<<<
@@ -2922,7 +2922,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
   __pyx_v_tbl_idx = 0;
 
-  /* "LEDSerialExpander.pyx":92
+  /* "LEDSerialExpander.pyx":97
  *     cdef int i
  *     cdef int tbl_idx = 0
  *     cdef unsigned char* destination = b_pointer             # <<<<<<<<<<<<<<
@@ -2931,7 +2931,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
   __pyx_v_destination = __pyx_v_b_pointer;
 
-  /* "LEDSerialExpander.pyx":93
+  /* "LEDSerialExpander.pyx":98
  *     cdef int tbl_idx = 0
  *     cdef unsigned char* destination = b_pointer
  *     destination += length             # <<<<<<<<<<<<<<
@@ -2940,7 +2940,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
   __pyx_v_destination = (__pyx_v_destination + __pyx_v_length);
 
-  /* "LEDSerialExpander.pyx":94
+  /* "LEDSerialExpander.pyx":99
  *     cdef unsigned char* destination = b_pointer
  *     destination += length
  *     cdef unsigned int crc = 0xffffffff             # <<<<<<<<<<<<<<
@@ -2949,7 +2949,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
   __pyx_v_crc = 0xffffffff;
 
-  /* "LEDSerialExpander.pyx":96
+  /* "LEDSerialExpander.pyx":101
  *     cdef unsigned int crc = 0xffffffff
  * 
  *     for i from 0 <= i < length:             # <<<<<<<<<<<<<<
@@ -2959,7 +2959,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
   __pyx_t_1 = __pyx_v_length;
   for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_1; __pyx_v_i++) {
 
-    /* "LEDSerialExpander.pyx":97
+    /* "LEDSerialExpander.pyx":102
  * 
  *     for i from 0 <= i < length:
  *         tbl_idx = crc ^ b_pointer[i];             # <<<<<<<<<<<<<<
@@ -2968,14 +2968,14 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
     __pyx_v_tbl_idx = (__pyx_v_crc ^ (__pyx_v_b_pointer[__pyx_v_i]));
 
-    /* "LEDSerialExpander.pyx":98
+    /* "LEDSerialExpander.pyx":103
  *     for i from 0 <= i < length:
  *         tbl_idx = crc ^ b_pointer[i];
  *         crc = crcv[tbl_idx & 0xff] ^ (crc >> 8)             # <<<<<<<<<<<<<<
  * 
  *     crc &= 0xffffffff
  */
-    if (unlikely(!__pyx_v_17LEDSerialExpander_crcv.memview)) { __Pyx_RaiseUnboundLocalError("crcv"); __PYX_ERR(0, 98, __pyx_L1_error) }
+    if (unlikely(!__pyx_v_17LEDSerialExpander_crcv.memview)) { __Pyx_RaiseUnboundLocalError("crcv"); __PYX_ERR(0, 103, __pyx_L1_error) }
     __pyx_t_2 = (__pyx_v_tbl_idx & 0xff);
     __pyx_t_3 = -1;
     if (__pyx_t_2 < 0) {
@@ -2984,44 +2984,44 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
     } else if (unlikely(__pyx_t_2 >= __pyx_v_17LEDSerialExpander_crcv.shape[0])) __pyx_t_3 = 0;
     if (unlikely(__pyx_t_3 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_3);
-      __PYX_ERR(0, 98, __pyx_L1_error)
+      __PYX_ERR(0, 103, __pyx_L1_error)
     }
     __pyx_v_crc = ((*((unsigned int *) ( /* dim=0 */ (__pyx_v_17LEDSerialExpander_crcv.data + __pyx_t_2 * __pyx_v_17LEDSerialExpander_crcv.strides[0]) ))) ^ (__pyx_v_crc >> 8));
   }
 
-  /* "LEDSerialExpander.pyx":100
+  /* "LEDSerialExpander.pyx":105
  *         crc = crcv[tbl_idx & 0xff] ^ (crc >> 8)
  * 
  *     crc &= 0xffffffff             # <<<<<<<<<<<<<<
  *     crc = crc ^0xffffffff
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_crc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_crc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_InPlaceAnd(__pyx_t_4, __pyx_int_4294967295); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_InPlaceAnd(__pyx_t_4, __pyx_int_4294967295); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_unsigned_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_unsigned_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_crc = __pyx_t_6;
 
-  /* "LEDSerialExpander.pyx":101
+  /* "LEDSerialExpander.pyx":106
  * 
  *     crc &= 0xffffffff
  *     crc = crc ^0xffffffff             # <<<<<<<<<<<<<<
  * 
  *     memcpy(destination,<unsigned char*>&crc,4)
  */
-  __pyx_t_5 = __Pyx_PyInt_From_unsigned_int(__pyx_v_crc); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_unsigned_int(__pyx_v_crc); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyNumber_Xor(__pyx_t_5, __pyx_int_4294967295); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Xor(__pyx_t_5, __pyx_int_4294967295); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_unsigned_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_unsigned_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_crc = __pyx_t_6;
 
-  /* "LEDSerialExpander.pyx":103
+  /* "LEDSerialExpander.pyx":108
  *     crc = crc ^0xffffffff
  * 
  *     memcpy(destination,<unsigned char*>&crc,4)             # <<<<<<<<<<<<<<
@@ -3030,7 +3030,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
  */
   (void)(memcpy(__pyx_v_destination, ((unsigned char *)(&__pyx_v_crc)), 4));
 
-  /* "LEDSerialExpander.pyx":88
+  /* "LEDSerialExpander.pyx":93
  * # calculates crc32 from b_pointer to b_pointer+length
  * # then memcpy that crc in the following 4 bytes
  * cdef void crc(unsigned char* b_pointer, int length):             # <<<<<<<<<<<<<<
@@ -3048,7 +3048,7 @@ static void __pyx_f_17LEDSerialExpander_crc(unsigned char *__pyx_v_b_pointer, in
   __Pyx_RefNannyFinishContext();
 }
 
-/* "LEDSerialExpander.pyx":111
+/* "LEDSerialExpander.pyx":116
  *     # baud: should be one of the standardized values
  *     # fps_show: shows fps counter
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):             # <<<<<<<<<<<<<<
@@ -3103,7 +3103,7 @@ static PyObject *__pyx_pw_17LEDSerialExpander_17LEDSerialExpander_1__init__(PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_config)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 111, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, 1); __PYX_ERR(0, 116, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -3125,7 +3125,7 @@ static PyObject *__pyx_pw_17LEDSerialExpander_17LEDSerialExpander_1__init__(PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 111, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 116, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3149,7 +3149,7 @@ static PyObject *__pyx_pw_17LEDSerialExpander_17LEDSerialExpander_1__init__(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 111, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 116, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("LEDSerialExpander.LEDSerialExpander.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3173,43 +3173,43 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander___init__(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "LEDSerialExpander.pyx":112
+  /* "LEDSerialExpander.pyx":117
  *     # fps_show: shows fps counter
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):
  *         self.uart = uart             # <<<<<<<<<<<<<<
  *         self.baud = baud
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_uart, __pyx_v_uart) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_uart, __pyx_v_uart) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":113
+  /* "LEDSerialExpander.pyx":118
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):
  *         self.uart = uart
  *         self.baud = baud             # <<<<<<<<<<<<<<
  * 
  *         self.largest_channel = 0
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_baud, __pyx_v_baud) < 0) __PYX_ERR(0, 113, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_baud, __pyx_v_baud) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":115
+  /* "LEDSerialExpander.pyx":120
  *         self.baud = baud
  * 
  *         self.largest_channel = 0             # <<<<<<<<<<<<<<
  *         self.draw_time = time.time()
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel, __pyx_int_0) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":116
+  /* "LEDSerialExpander.pyx":121
  * 
  *         self.largest_channel = 0
  *         self.draw_time = time.time()             # <<<<<<<<<<<<<<
  * 
  *         self.fps_show = fps_show
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -3224,31 +3224,31 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander___init__(CYTHO
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_time, __pyx_t_1) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_time, __pyx_t_1) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":118
+  /* "LEDSerialExpander.pyx":123
  *         self.draw_time = time.time()
  * 
  *         self.fps_show = fps_show             # <<<<<<<<<<<<<<
  *         self.frametime = time.time()
  *         self.fps = 0
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps_show, __pyx_v_fps_show) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps_show, __pyx_v_fps_show) < 0) __PYX_ERR(0, 123, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":119
+  /* "LEDSerialExpander.pyx":124
  * 
  *         self.fps_show = fps_show
  *         self.frametime = time.time()             # <<<<<<<<<<<<<<
  *         self.fps = 0
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -3263,38 +3263,38 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander___init__(CYTHO
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_frametime, __pyx_t_1) < 0) __PYX_ERR(0, 119, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_frametime, __pyx_t_1) < 0) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":120
+  /* "LEDSerialExpander.pyx":125
  *         self.fps_show = fps_show
  *         self.frametime = time.time()
  *         self.fps = 0             # <<<<<<<<<<<<<<
  * 
  *         self.config = config
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_int_0) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_int_0) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":122
+  /* "LEDSerialExpander.pyx":127
  *         self.fps = 0
  * 
  *         self.config = config             # <<<<<<<<<<<<<<
  *         self.__setup()
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_v_config) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_v_config) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":123
+  /* "LEDSerialExpander.pyx":128
  * 
  *         self.config = config
  *         self.__setup()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__setup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__setup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3308,12 +3308,12 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander___init__(CYTHO
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":111
+  /* "LEDSerialExpander.pyx":116
  *     # baud: should be one of the standardized values
  *     # fps_show: shows fps counter
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):             # <<<<<<<<<<<<<<
@@ -3336,7 +3336,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander___init__(CYTHO
   return __pyx_r;
 }
 
-/* "LEDSerialExpander.pyx":127
+/* "LEDSerialExpander.pyx":132
  * 
  *     #one time setup run
  *     def __setup(self):             # <<<<<<<<<<<<<<
@@ -3393,80 +3393,80 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setup", 0);
 
-  /* "LEDSerialExpander.pyx":128
+  /* "LEDSerialExpander.pyx":133
  *     #one time setup run
  *     def __setup(self):
  *         self.size = 0 #total pixels among all strips             # <<<<<<<<<<<<<<
  *         self.port = serial.Serial(self.uart, baudrate=self.baud, timeout=3)  # 3,4,zero w all use ttyS0, else ttyAMA0
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_size, __pyx_int_0) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_size, __pyx_int_0) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":129
+  /* "LEDSerialExpander.pyx":134
  *     def __setup(self):
  *         self.size = 0 #total pixels among all strips
  *         self.port = serial.Serial(self.uart, baudrate=self.baud, timeout=3)  # 3,4,zero w all use ttyS0, else ttyAMA0             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_serial); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_serial); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Serial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Serial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_uart); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_uart); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_baudrate, __pyx_t_4) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_baudrate, __pyx_t_4) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_timeout, __pyx_int_3) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_timeout, __pyx_int_3) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_port, __pyx_t_4) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_port, __pyx_t_4) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "LEDSerialExpander.pyx":133
+  /* "LEDSerialExpander.pyx":138
  * 
  *         #individual channel headers setup
  *         self.headers = {}             # <<<<<<<<<<<<<<
  *         self.buffer_size = 0
  * 
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_headers, __pyx_t_4) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_headers, __pyx_t_4) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "LEDSerialExpander.pyx":134
+  /* "LEDSerialExpander.pyx":139
  *         #individual channel headers setup
  *         self.headers = {}
  *         self.buffer_size = 0             # <<<<<<<<<<<<<<
  * 
  *         for channel, c  in self.config.items():
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_int_0) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_int_0) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":136
+  /* "LEDSerialExpander.pyx":141
  *         self.buffer_size = 0
  * 
  *         for channel, c  in self.config.items():             # <<<<<<<<<<<<<<
  *             self.baud * 0.8
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -3481,16 +3481,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   }
   __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
     __pyx_t_3 = __pyx_t_4; __Pyx_INCREF(__pyx_t_3); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 141, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   for (;;) {
@@ -3498,17 +3498,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -3518,7 +3518,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 136, __pyx_L1_error)
+          else __PYX_ERR(0, 141, __pyx_L1_error)
         }
         break;
       }
@@ -3530,7 +3530,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 136, __pyx_L1_error)
+        __PYX_ERR(0, 141, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -3543,15 +3543,15 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 141, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -3559,7 +3559,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_GOTREF(__pyx_t_1);
       index = 1; __pyx_t_2 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 136, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -3567,7 +3567,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 136, __pyx_L1_error)
+      __PYX_ERR(0, 141, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_channel, __pyx_t_1);
@@ -3575,207 +3575,207 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
     __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "LEDSerialExpander.pyx":137
+    /* "LEDSerialExpander.pyx":142
  * 
  *         for channel, c  in self.config.items():
  *             self.baud * 0.8             # <<<<<<<<<<<<<<
  * 
  *             if c['size'] > 0:
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_float_0_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_float_0_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "LEDSerialExpander.pyx":139
+    /* "LEDSerialExpander.pyx":144
  *             self.baud * 0.8
  * 
  *             if c['size'] > 0:             # <<<<<<<<<<<<<<
  *                 self.size += c['size']
  *                 c['bpp'] = len (c['order'])
  */
-    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_9) {
 
-      /* "LEDSerialExpander.pyx":140
+      /* "LEDSerialExpander.pyx":145
  * 
  *             if c['size'] > 0:
  *                 self.size += c['size']             # <<<<<<<<<<<<<<
  *                 c['bpp'] = len (c['order'])
  *                 c['header_size'] = 10 # each ws2812 instruction has 10 byte header
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_size, __pyx_t_1) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_size, __pyx_t_1) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":141
+      /* "LEDSerialExpander.pyx":146
  *             if c['size'] > 0:
  *                 self.size += c['size']
  *                 c['bpp'] = len (c['order'])             # <<<<<<<<<<<<<<
  *                 c['header_size'] = 10 # each ws2812 instruction has 10 byte header
  *                 c['header_offset'] = self.buffer_size
  */
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 141, __pyx_L1_error)
+      __pyx_t_10 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_bpp, __pyx_t_1) < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_bpp, __pyx_t_1) < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":142
+      /* "LEDSerialExpander.pyx":147
  *                 self.size += c['size']
  *                 c['bpp'] = len (c['order'])
  *                 c['header_size'] = 10 # each ws2812 instruction has 10 byte header             # <<<<<<<<<<<<<<
  *                 c['header_offset'] = self.buffer_size
  * 
  */
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_header_size, __pyx_int_10) < 0)) __PYX_ERR(0, 142, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_header_size, __pyx_int_10) < 0)) __PYX_ERR(0, 147, __pyx_L1_error)
 
-      /* "LEDSerialExpander.pyx":143
+      /* "LEDSerialExpander.pyx":148
  *                 c['bpp'] = len (c['order'])
  *                 c['header_size'] = 10 # each ws2812 instruction has 10 byte header
  *                 c['header_offset'] = self.buffer_size             # <<<<<<<<<<<<<<
  * 
  *                 self.buffer_size += c['header_size']
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_header_offset, __pyx_t_1) < 0)) __PYX_ERR(0, 143, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_header_offset, __pyx_t_1) < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":145
+      /* "LEDSerialExpander.pyx":150
  *                 c['header_offset'] = self.buffer_size
  * 
  *                 self.buffer_size += c['header_size']             # <<<<<<<<<<<<<<
  *                 c['data_offset'] = self.buffer_size
  *                 c['data_bytes'] = c['size'] *c['bpp']
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_t_4) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_t_4) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "LEDSerialExpander.pyx":146
+      /* "LEDSerialExpander.pyx":151
  * 
  *                 self.buffer_size += c['header_size']
  *                 c['data_offset'] = self.buffer_size             # <<<<<<<<<<<<<<
  *                 c['data_bytes'] = c['size'] *c['bpp']
  *                 self.buffer_size += c['data_bytes'] + 4 # 4 is crc size
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_data_offset, __pyx_t_4) < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_data_offset, __pyx_t_4) < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "LEDSerialExpander.pyx":147
+      /* "LEDSerialExpander.pyx":152
  *                 self.buffer_size += c['header_size']
  *                 c['data_offset'] = self.buffer_size
  *                 c['data_bytes'] = c['size'] *c['bpp']             # <<<<<<<<<<<<<<
  *                 self.buffer_size += c['data_bytes'] + 4 # 4 is crc size
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Multiply(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_data_bytes, __pyx_t_1) < 0)) __PYX_ERR(0, 147, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_data_bytes, __pyx_t_1) < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":148
+      /* "LEDSerialExpander.pyx":153
  *                 c['data_offset'] = self.buffer_size
  *                 c['data_bytes'] = c['size'] *c['bpp']
  *                 self.buffer_size += c['data_bytes'] + 4 # 4 is crc size             # <<<<<<<<<<<<<<
  * 
  *                 if c['bpp'] <3 or c['bpp'] >4:
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_t_2) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size, __pyx_t_2) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "LEDSerialExpander.pyx":150
+      /* "LEDSerialExpander.pyx":155
  *                 self.buffer_size += c['data_bytes'] + 4 # 4 is crc size
  * 
  *                 if c['bpp'] <3 or c['bpp'] >4:             # <<<<<<<<<<<<<<
  *                     raise ValueError("channel: %s : color_order must be 3 or 4 items"%c['channel'])
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_int_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_int_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (!__pyx_t_11) {
       } else {
         __pyx_t_9 = __pyx_t_11;
         goto __pyx_L9_bool_binop_done;
       }
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_int_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_int_4, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_9 = __pyx_t_11;
       __pyx_L9_bool_binop_done:;
       if (unlikely(__pyx_t_9)) {
 
-        /* "LEDSerialExpander.pyx":151
+        /* "LEDSerialExpander.pyx":156
  * 
  *                 if c['bpp'] <3 or c['bpp'] >4:
  *                     raise ValueError("channel: %s : color_order must be 3 or 4 items"%c['channel'])             # <<<<<<<<<<<<<<
  * 
  *                 if c['bpp'] * c['size'] > 2400: # 800 RGB or 600 RGBW
  */
-        __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_channel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_channel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_channel_s_color_order_must_be_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_channel_s_color_order_must_be_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_Raise(__pyx_t_2, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __PYX_ERR(0, 151, __pyx_L1_error)
+        __PYX_ERR(0, 156, __pyx_L1_error)
 
-        /* "LEDSerialExpander.pyx":150
+        /* "LEDSerialExpander.pyx":155
  *                 self.buffer_size += c['data_bytes'] + 4 # 4 is crc size
  * 
  *                 if c['bpp'] <3 or c['bpp'] >4:             # <<<<<<<<<<<<<<
@@ -3784,41 +3784,41 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
       }
 
-      /* "LEDSerialExpander.pyx":153
+      /* "LEDSerialExpander.pyx":158
  *                     raise ValueError("channel: %s : color_order must be 3 or 4 items"%c['channel'])
  * 
  *                 if c['bpp'] * c['size'] > 2400: # 800 RGB or 600 RGBW             # <<<<<<<<<<<<<<
  *                     raise ValueError("Each channel supports up to 800 RGB or 600 RGBW pixels")
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_int_2400, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_int_2400, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (unlikely(__pyx_t_9)) {
 
-        /* "LEDSerialExpander.pyx":154
+        /* "LEDSerialExpander.pyx":159
  * 
  *                 if c['bpp'] * c['size'] > 2400: # 800 RGB or 600 RGBW
  *                     raise ValueError("Each channel supports up to 800 RGB or 600 RGBW pixels")             # <<<<<<<<<<<<<<
  * 
  *                 c['order_byte'] = 0
  */
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __PYX_ERR(0, 154, __pyx_L1_error)
+        __PYX_ERR(0, 159, __pyx_L1_error)
 
-        /* "LEDSerialExpander.pyx":153
+        /* "LEDSerialExpander.pyx":158
  *                     raise ValueError("channel: %s : color_order must be 3 or 4 items"%c['channel'])
  * 
  *                 if c['bpp'] * c['size'] > 2400: # 800 RGB or 600 RGBW             # <<<<<<<<<<<<<<
@@ -3827,16 +3827,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
       }
 
-      /* "LEDSerialExpander.pyx":156
+      /* "LEDSerialExpander.pyx":161
  *                     raise ValueError("Each channel supports up to 800 RGB or 600 RGBW pixels")
  * 
  *                 c['order_byte'] = 0             # <<<<<<<<<<<<<<
  *                 for i,color in enumerate(c['order']):
  *                     if color == "R":
  */
-      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_order_byte, __pyx_int_0) < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_n_s_order_byte, __pyx_int_0) < 0)) __PYX_ERR(0, 161, __pyx_L1_error)
 
-      /* "LEDSerialExpander.pyx":157
+      /* "LEDSerialExpander.pyx":162
  * 
  *                 c['order_byte'] = 0
  *                 for i,color in enumerate(c['order']):             # <<<<<<<<<<<<<<
@@ -3845,15 +3845,15 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
       __Pyx_INCREF(__pyx_int_0);
       __pyx_t_4 = __pyx_int_0;
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
         __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_10 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_10 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __pyx_t_10 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 162, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       for (;;) {
@@ -3861,17 +3861,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
           if (likely(PyList_CheckExact(__pyx_t_2))) {
             if (__pyx_t_10 >= PyList_GET_SIZE(__pyx_t_2)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
+            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           } else {
             if (__pyx_t_10 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
+            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           }
@@ -3881,7 +3881,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 157, __pyx_L1_error)
+              else __PYX_ERR(0, 162, __pyx_L1_error)
             }
             break;
           }
@@ -3891,23 +3891,23 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
         __pyx_t_1 = 0;
         __Pyx_INCREF(__pyx_t_4);
         __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_4);
-        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_4);
         __pyx_t_4 = __pyx_t_1;
         __pyx_t_1 = 0;
 
-        /* "LEDSerialExpander.pyx":158
+        /* "LEDSerialExpander.pyx":163
  *                 c['order_byte'] = 0
  *                 for i,color in enumerate(c['order']):
  *                     if color == "R":             # <<<<<<<<<<<<<<
  *                         c['order_byte'] += i << 6
  *                     elif color == "G":
  */
-        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_R, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
+        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_R, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 163, __pyx_L1_error)
         if (__pyx_t_9) {
 
-          /* "LEDSerialExpander.pyx":159
+          /* "LEDSerialExpander.pyx":164
  *                 for i,color in enumerate(c['order']):
  *                     if color == "R":
  *                         c['order_byte'] += i << 6             # <<<<<<<<<<<<<<
@@ -3916,19 +3916,19 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
           __Pyx_INCREF(__pyx_n_s_order_byte);
           __pyx_t_13 = __pyx_n_s_order_byte;
-          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_6, 6, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 159, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_6, 6, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 164, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_14 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 159, __pyx_L1_error)
+          __pyx_t_14 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 164, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_14) < 0)) __PYX_ERR(0, 159, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_14) < 0)) __PYX_ERR(0, 164, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-          /* "LEDSerialExpander.pyx":158
+          /* "LEDSerialExpander.pyx":163
  *                 c['order_byte'] = 0
  *                 for i,color in enumerate(c['order']):
  *                     if color == "R":             # <<<<<<<<<<<<<<
@@ -3938,17 +3938,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
           goto __pyx_L14;
         }
 
-        /* "LEDSerialExpander.pyx":160
+        /* "LEDSerialExpander.pyx":165
  *                     if color == "R":
  *                         c['order_byte'] += i << 6
  *                     elif color == "G":             # <<<<<<<<<<<<<<
  *                         c['order_byte'] += i << 4
  *                     elif color == "B":
  */
-        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_G, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 160, __pyx_L1_error)
+        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_G, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 165, __pyx_L1_error)
         if (__pyx_t_9) {
 
-          /* "LEDSerialExpander.pyx":161
+          /* "LEDSerialExpander.pyx":166
  *                         c['order_byte'] += i << 6
  *                     elif color == "G":
  *                         c['order_byte'] += i << 4             # <<<<<<<<<<<<<<
@@ -3957,19 +3957,19 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
           __Pyx_INCREF(__pyx_n_s_order_byte);
           __pyx_t_13 = __pyx_n_s_order_byte;
-          __pyx_t_14 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 161, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
-          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 161, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_14, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+          __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_14, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_1) < 0)) __PYX_ERR(0, 161, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_1) < 0)) __PYX_ERR(0, 166, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-          /* "LEDSerialExpander.pyx":160
+          /* "LEDSerialExpander.pyx":165
  *                     if color == "R":
  *                         c['order_byte'] += i << 6
  *                     elif color == "G":             # <<<<<<<<<<<<<<
@@ -3979,17 +3979,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
           goto __pyx_L14;
         }
 
-        /* "LEDSerialExpander.pyx":162
+        /* "LEDSerialExpander.pyx":167
  *                     elif color == "G":
  *                         c['order_byte'] += i << 4
  *                     elif color == "B":             # <<<<<<<<<<<<<<
  *                         c['order_byte'] += i << 2
  *                     elif color == "W":
  */
-        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_B, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
+        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_B, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 167, __pyx_L1_error)
         if (__pyx_t_9) {
 
-          /* "LEDSerialExpander.pyx":163
+          /* "LEDSerialExpander.pyx":168
  *                         c['order_byte'] += i << 4
  *                     elif color == "B":
  *                         c['order_byte'] += i << 2             # <<<<<<<<<<<<<<
@@ -3998,19 +3998,19 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
           __Pyx_INCREF(__pyx_n_s_order_byte);
           __pyx_t_13 = __pyx_n_s_order_byte;
-          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 163, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyInt_LshiftObjC(__pyx_v_i, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_14 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 163, __pyx_L1_error)
+          __pyx_t_14 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_14) < 0)) __PYX_ERR(0, 163, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_14) < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-          /* "LEDSerialExpander.pyx":162
+          /* "LEDSerialExpander.pyx":167
  *                     elif color == "G":
  *                         c['order_byte'] += i << 4
  *                     elif color == "B":             # <<<<<<<<<<<<<<
@@ -4020,17 +4020,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
           goto __pyx_L14;
         }
 
-        /* "LEDSerialExpander.pyx":164
+        /* "LEDSerialExpander.pyx":169
  *                     elif color == "B":
  *                         c['order_byte'] += i << 2
  *                     elif color == "W":             # <<<<<<<<<<<<<<
  *                         c['order_byte'] += i
  *                     else:
  */
-        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_W, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 164, __pyx_L1_error)
+        __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_color, __pyx_n_s_W, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 169, __pyx_L1_error)
         if (likely(__pyx_t_9)) {
 
-          /* "LEDSerialExpander.pyx":165
+          /* "LEDSerialExpander.pyx":170
  *                         c['order_byte'] += i << 2
  *                     elif color == "W":
  *                         c['order_byte'] += i             # <<<<<<<<<<<<<<
@@ -4039,16 +4039,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
           __Pyx_INCREF(__pyx_n_s_order_byte);
           __pyx_t_13 = __pyx_n_s_order_byte;
-          __pyx_t_14 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 170, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
-          __pyx_t_7 = PyNumber_InPlaceAdd(__pyx_t_14, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_7 = PyNumber_InPlaceAdd(__pyx_t_14, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 170, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_7) < 0)) __PYX_ERR(0, 165, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_c, __pyx_t_13, __pyx_t_7) < 0)) __PYX_ERR(0, 170, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-          /* "LEDSerialExpander.pyx":164
+          /* "LEDSerialExpander.pyx":169
  *                     elif color == "B":
  *                         c['order_byte'] += i << 2
  *                     elif color == "W":             # <<<<<<<<<<<<<<
@@ -4058,7 +4058,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
           goto __pyx_L14;
         }
 
-        /* "LEDSerialExpander.pyx":167
+        /* "LEDSerialExpander.pyx":172
  *                         c['order_byte'] += i
  *                     else:
  *                         raise ValueError("channel: %s : color_order needs to be capitalized and contain these letters: RGBW "%c['channel'])             # <<<<<<<<<<<<<<
@@ -4066,21 +4066,21 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  *                 if self.largest_channel < c['data_bytes']:
  */
         /*else*/ {
-          __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_channel); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 167, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_channel); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_14 = __Pyx_PyString_FormatSafe(__pyx_kp_s_channel_s_color_order_needs_to_b, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 167, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyString_FormatSafe(__pyx_kp_s_channel_s_color_order_needs_to_b, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_14); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 167, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_14); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_Raise(__pyx_t_7, 0, 0, 0);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __PYX_ERR(0, 167, __pyx_L1_error)
+          __PYX_ERR(0, 172, __pyx_L1_error)
         }
         __pyx_L14:;
 
-        /* "LEDSerialExpander.pyx":157
+        /* "LEDSerialExpander.pyx":162
  * 
  *                 c['order_byte'] = 0
  *                 for i,color in enumerate(c['order']):             # <<<<<<<<<<<<<<
@@ -4091,37 +4091,37 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "LEDSerialExpander.pyx":169
+      /* "LEDSerialExpander.pyx":174
  *                         raise ValueError("channel: %s : color_order needs to be capitalized and contain these letters: RGBW "%c['channel'])
  * 
  *                 if self.largest_channel < c['data_bytes']:             # <<<<<<<<<<<<<<
  *                     self.largest_channel = c['data_bytes']
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 169, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 169, __pyx_L1_error)
+      __pyx_t_7 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 169, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       if (__pyx_t_9) {
 
-        /* "LEDSerialExpander.pyx":170
+        /* "LEDSerialExpander.pyx":175
  * 
  *                 if self.largest_channel < c['data_bytes']:
  *                     self.largest_channel = c['data_bytes']             # <<<<<<<<<<<<<<
  * 
  *                 header = bytearray(b"UPXL") #magic start sequence
  */
-        __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 175, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel, __pyx_t_7) < 0) __PYX_ERR(0, 170, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_largest_channel, __pyx_t_7) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "LEDSerialExpander.pyx":169
+        /* "LEDSerialExpander.pyx":174
  *                         raise ValueError("channel: %s : color_order needs to be capitalized and contain these letters: RGBW "%c['channel'])
  * 
  *                 if self.largest_channel < c['data_bytes']:             # <<<<<<<<<<<<<<
@@ -4130,69 +4130,69 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
       }
 
-      /* "LEDSerialExpander.pyx":172
+      /* "LEDSerialExpander.pyx":177
  *                     self.largest_channel = c['data_bytes']
  * 
  *                 header = bytearray(b"UPXL") #magic start sequence             # <<<<<<<<<<<<<<
  *                 header.append (channel) # channel 1 byte
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  */
-      __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_XDECREF_SET(__pyx_v_header, ((PyObject*)__pyx_t_7));
       __pyx_t_7 = 0;
 
-      /* "LEDSerialExpander.pyx":173
+      /* "LEDSerialExpander.pyx":178
  * 
  *                 header = bytearray(b"UPXL") #magic start sequence
  *                 header.append (channel) # channel 1 byte             # <<<<<<<<<<<<<<
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  *                 if c['type'] != 1:
  */
-      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_header, __pyx_v_channel); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_header, __pyx_v_channel); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 178, __pyx_L1_error)
 
-      /* "LEDSerialExpander.pyx":174
+      /* "LEDSerialExpander.pyx":179
  *                 header = bytearray(b"UPXL") #magic start sequence
  *                 header.append (channel) # channel 1 byte
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all             # <<<<<<<<<<<<<<
  *                 if c['type'] != 1:
  *                     raise ValueError("Non ws281x not supported yet")
  */
-      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_header, __pyx_t_7); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_header, __pyx_t_7); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 179, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "LEDSerialExpander.pyx":175
+      /* "LEDSerialExpander.pyx":180
  *                 header.append (channel) # channel 1 byte
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  *                 if c['type'] != 1:             # <<<<<<<<<<<<<<
  *                     raise ValueError("Non ws281x not supported yet")
  * 
  */
-      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_2 = __Pyx_PyInt_NeObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_NeObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (unlikely(__pyx_t_9)) {
 
-        /* "LEDSerialExpander.pyx":176
+        /* "LEDSerialExpander.pyx":181
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  *                 if c['type'] != 1:
  *                     raise ValueError("Non ws281x not supported yet")             # <<<<<<<<<<<<<<
  * 
  *                 instruction = bytearray()
  */
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_Raise(__pyx_t_2, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __PYX_ERR(0, 176, __pyx_L1_error)
+        __PYX_ERR(0, 181, __pyx_L1_error)
 
-        /* "LEDSerialExpander.pyx":175
+        /* "LEDSerialExpander.pyx":180
  *                 header.append (channel) # channel 1 byte
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  *                 if c['type'] != 1:             # <<<<<<<<<<<<<<
@@ -4201,52 +4201,52 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
       }
 
-      /* "LEDSerialExpander.pyx":178
+      /* "LEDSerialExpander.pyx":183
  *                     raise ValueError("Non ws281x not supported yet")
  * 
  *                 instruction = bytearray()             # <<<<<<<<<<<<<<
  *                 instruction.append(c['bpp']) #numElements
  *                 instruction.append(c['order_byte']) #colororder
  */
-      __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)(&PyByteArray_Type))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)(&PyByteArray_Type))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_instruction, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "LEDSerialExpander.pyx":179
+      /* "LEDSerialExpander.pyx":184
  * 
  *                 instruction = bytearray()
  *                 instruction.append(c['bpp']) #numElements             # <<<<<<<<<<<<<<
  *                 instruction.append(c['order_byte']) #colororder
  *                 instruction.extend(pack("<h",c['size'])) # number of pixels, 2 bytes, LITTLE ENDIAN
  */
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_bpp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_instruction, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 179, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_instruction, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "LEDSerialExpander.pyx":180
+      /* "LEDSerialExpander.pyx":185
  *                 instruction = bytearray()
  *                 instruction.append(c['bpp']) #numElements
  *                 instruction.append(c['order_byte']) #colororder             # <<<<<<<<<<<<<<
  *                 instruction.extend(pack("<h",c['size'])) # number of pixels, 2 bytes, LITTLE ENDIAN
  *                 self.headers[channel] = header+instruction
  */
-      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order_byte); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_order_byte); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_instruction, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyByteArray_AppendObject(__pyx_v_instruction, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "LEDSerialExpander.pyx":181
+      /* "LEDSerialExpander.pyx":186
  *                 instruction.append(c['bpp']) #numElements
  *                 instruction.append(c['order_byte']) #colororder
  *                 instruction.extend(pack("<h",c['size'])) # number of pixels, 2 bytes, LITTLE ENDIAN             # <<<<<<<<<<<<<<
  *                 self.headers[channel] = header+instruction
  * 
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_pack); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_pack); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 186, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_14 = NULL;
       __pyx_t_16 = 0;
@@ -4263,7 +4263,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_kp_s_h, __pyx_t_4};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_16, 2+__pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_16, 2+__pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -4272,14 +4272,14 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_kp_s_h, __pyx_t_4};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_16, 2+__pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_16, 2+__pyx_t_16); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else
       #endif
       {
-        __pyx_t_1 = PyTuple_New(2+__pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(2+__pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         if (__pyx_t_14) {
           __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_14); __pyx_t_14 = NULL;
@@ -4290,32 +4290,32 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
         __Pyx_GIVEREF(__pyx_t_4);
         PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_16, __pyx_t_4);
         __pyx_t_4 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       }
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyByteArray_Type_extend, __pyx_v_instruction, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyByteArray_Type_extend, __pyx_v_instruction, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 186, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "LEDSerialExpander.pyx":182
+      /* "LEDSerialExpander.pyx":187
  *                 instruction.append(c['order_byte']) #colororder
  *                 instruction.extend(pack("<h",c['size'])) # number of pixels, 2 bytes, LITTLE ENDIAN
  *                 self.headers[channel] = header+instruction             # <<<<<<<<<<<<<<
  * 
  *             print (c)
  */
-      __pyx_t_7 = PyNumber_Add(__pyx_v_header, __pyx_v_instruction); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_7 = PyNumber_Add(__pyx_v_header, __pyx_v_instruction); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 187, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_headers); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_headers); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_channel, __pyx_t_7) < 0)) __PYX_ERR(0, 182, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_t_2, __pyx_v_channel, __pyx_t_7) < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "LEDSerialExpander.pyx":139
+      /* "LEDSerialExpander.pyx":144
  *             self.baud * 0.8
  * 
  *             if c['size'] > 0:             # <<<<<<<<<<<<<<
@@ -4324,16 +4324,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
     }
 
-    /* "LEDSerialExpander.pyx":184
+    /* "LEDSerialExpander.pyx":189
  *                 self.headers[channel] = header+instruction
  * 
  *             print (c)             # <<<<<<<<<<<<<<
  *         print ("self.buffer after all that %s"%self.buffer_size)
  *         self.draw_all_offset = self.buffer_size
  */
-    if (__Pyx_PrintOne(0, __pyx_v_c) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_v_c) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
 
-    /* "LEDSerialExpander.pyx":136
+    /* "LEDSerialExpander.pyx":141
  *         self.buffer_size = 0
  * 
  *         for channel, c  in self.config.items():             # <<<<<<<<<<<<<<
@@ -4343,145 +4343,145 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "LEDSerialExpander.pyx":185
+  /* "LEDSerialExpander.pyx":190
  * 
  *             print (c)
  *         print ("self.buffer after all that %s"%self.buffer_size)             # <<<<<<<<<<<<<<
  *         self.draw_all_offset = self.buffer_size
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyString_FormatSafe(__pyx_kp_s_self_buffer_after_all_that_s, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyString_FormatSafe(__pyx_kp_s_self_buffer_after_all_that_s, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":186
+  /* "LEDSerialExpander.pyx":191
  *             print (c)
  *         print ("self.buffer after all that %s"%self.buffer_size)
  *         self.draw_all_offset = self.buffer_size             # <<<<<<<<<<<<<<
  * 
  *         #timing constants
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset, __pyx_t_7) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset, __pyx_t_7) < 0) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":189
+  /* "LEDSerialExpander.pyx":194
  * 
  *         #timing constants
  *         self.draw_speed = .0072 #(self.largest_channel/LARGEST_STRIP_BYTES) * .0072 #creator mentioned that that draw command takes 7.2ms             # <<<<<<<<<<<<<<
  *         #self.send_speed = (((self.size*3) + ((len(self.config) +1) *10 ))*8)/ (self.baud * 0.8) * .001 # time it takes to send full command (bits sent/buadrate)
  *         #                   data bytes          amount of headers bytes   ^ bit              ^  start/stop to content bit ratio ^ .000001 timer
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_speed, __pyx_float__0072) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_speed, __pyx_float__0072) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":192
+  /* "LEDSerialExpander.pyx":197
  *         #self.send_speed = (((self.size*3) + ((len(self.config) +1) *10 ))*8)/ (self.baud * 0.8) * .001 # time it takes to send full command (bits sent/buadrate)
  *         #                   data bytes          amount of headers bytes   ^ bit              ^  start/stop to content bit ratio ^ .000001 timer
  *         self.send_speed = (self.buffer_size*8) / (self.baud * 0.8) # time it takes in seconds for command to reach the board             # <<<<<<<<<<<<<<
  * 
  *         #draw_all command:
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_7, __pyx_int_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_7, __pyx_int_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_baud); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_7, __pyx_float_0_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_7, __pyx_float_0_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_t_7) < 0) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_t_7) < 0) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":195
+  /* "LEDSerialExpander.pyx":200
  * 
  *         #draw_all command:
  *         self.draw_all = bytearray(b"UPXL") #magic start sequence             # <<<<<<<<<<<<<<
  *         self.draw_all.append (0x00) # channel ignored but needs to be here
  *         self.draw_all.append (0x02) # recordtype 1=ws2812 2=draw all
  */
-  __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_all, __pyx_t_7) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_all, __pyx_t_7) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":196
+  /* "LEDSerialExpander.pyx":201
  *         #draw_all command:
  *         self.draw_all = bytearray(b"UPXL") #magic start sequence
  *         self.draw_all.append (0x00) # channel ignored but needs to be here             # <<<<<<<<<<<<<<
  *         self.draw_all.append (0x02) # recordtype 1=ws2812 2=draw all
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_int_0); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_int_0); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":197
+  /* "LEDSerialExpander.pyx":202
  *         self.draw_all = bytearray(b"UPXL") #magic start sequence
  *         self.draw_all.append (0x00) # channel ignored but needs to be here
  *         self.draw_all.append (0x02) # recordtype 1=ws2812 2=draw all             # <<<<<<<<<<<<<<
  * 
  *         print ("Buffer size: %s :" %self.buffer_size)
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_int_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_int_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "LEDSerialExpander.pyx":199
+  /* "LEDSerialExpander.pyx":204
  *         self.draw_all.append (0x02) # recordtype 1=ws2812 2=draw all
  * 
  *         print ("Buffer size: %s :" %self.buffer_size)             # <<<<<<<<<<<<<<
  *         self.buffer = bytearray(self.buffer_size+10) #super important buffer declaration
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Buffer_size_s, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Buffer_size_s, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 199, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":200
+  /* "LEDSerialExpander.pyx":205
  * 
  *         print ("Buffer size: %s :" %self.buffer_size)
  *         self.buffer = bytearray(self.buffer_size+10) #super important buffer declaration             # <<<<<<<<<<<<<<
  * 
  *         # this part copies headers and instructions to  the buffer. These headers are static
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_10, 10, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_10, 10, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyByteArray_Type)), __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyByteArray_Type)), __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer, __pyx_t_2) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_buffer, __pyx_t_2) < 0) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":205
+  /* "LEDSerialExpander.pyx":210
  *         #cdef char* buf_pointer, header_pointer
  *         #cdef int s
  *         for i,h in self.headers.items(): # traversing list of bytearrays, memcpy them into buffer             # <<<<<<<<<<<<<<
  *             start = self.config[i]['header_offset']
  *             end   = self.config[i]['header_offset']+self.config[i]['header_size']
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_headers); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_headers); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -4496,16 +4496,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   }
   __pyx_t_2 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 210, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -4513,17 +4513,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -4533,7 +4533,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 205, __pyx_L1_error)
+          else __PYX_ERR(0, 210, __pyx_L1_error)
         }
         break;
       }
@@ -4545,7 +4545,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 205, __pyx_L1_error)
+        __PYX_ERR(0, 210, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4558,15 +4558,15 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_t_1);
       #else
-      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_4 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_4 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -4574,7 +4574,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_GOTREF(__pyx_t_7);
       index = 1; __pyx_t_1 = __pyx_t_8(__pyx_t_4); if (unlikely(!__pyx_t_1)) goto __pyx_L19_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_1);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 205, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_4), 2) < 0) __PYX_ERR(0, 210, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       goto __pyx_L20_unpacking_done;
@@ -4582,7 +4582,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 205, __pyx_L1_error)
+      __PYX_ERR(0, 210, __pyx_L1_error)
       __pyx_L20_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_7);
@@ -4590,67 +4590,67 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
     __Pyx_XDECREF_SET(__pyx_v_h, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "LEDSerialExpander.pyx":206
+    /* "LEDSerialExpander.pyx":211
  *         #cdef int s
  *         for i,h in self.headers.items(): # traversing list of bytearrays, memcpy them into buffer
  *             start = self.config[i]['header_offset']             # <<<<<<<<<<<<<<
  *             end   = self.config[i]['header_offset']+self.config[i]['header_size']
  *             self.buffer[start:end] = h
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_start, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "LEDSerialExpander.pyx":207
+    /* "LEDSerialExpander.pyx":212
  *         for i,h in self.headers.items(): # traversing list of bytearrays, memcpy them into buffer
  *             start = self.config[i]['header_offset']
  *             end   = self.config[i]['header_offset']+self.config[i]['header_size']             # <<<<<<<<<<<<<<
  *             self.buffer[start:end] = h
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_7, __pyx_n_s_header_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_7, __pyx_n_s_header_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_end, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "LEDSerialExpander.pyx":208
+    /* "LEDSerialExpander.pyx":213
  *             start = self.config[i]['header_offset']
  *             end   = self.config[i]['header_offset']+self.config[i]['header_size']
  *             self.buffer[start:end] = h             # <<<<<<<<<<<<<<
  * 
  *         #draw_all memcpy
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 208, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (__Pyx_PyObject_SetSlice(__pyx_t_7, __pyx_v_h, 0, 0, &__pyx_v_start, &__pyx_v_end, NULL, 0, 0, 1) < 0) __PYX_ERR(0, 208, __pyx_L1_error)
+    if (__Pyx_PyObject_SetSlice(__pyx_t_7, __pyx_v_h, 0, 0, &__pyx_v_start, &__pyx_v_end, NULL, 0, 0, 1) < 0) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "LEDSerialExpander.pyx":205
+    /* "LEDSerialExpander.pyx":210
  *         #cdef char* buf_pointer, header_pointer
  *         #cdef int s
  *         for i,h in self.headers.items(): # traversing list of bytearrays, memcpy them into buffer             # <<<<<<<<<<<<<<
@@ -4660,82 +4660,82 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "LEDSerialExpander.pyx":211
+  /* "LEDSerialExpander.pyx":216
  * 
  *         #draw_all memcpy
  *         start = self.draw_all_offset             # <<<<<<<<<<<<<<
  *         end   = self.draw_all_offset+len(self.draw_all)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_XDECREF_SET(__pyx_v_start, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "LEDSerialExpander.pyx":212
+  /* "LEDSerialExpander.pyx":217
  *         #draw_all memcpy
  *         start = self.draw_all_offset
  *         end   = self.draw_all_offset+len(self.draw_all)             # <<<<<<<<<<<<<<
  * 
  *         self.buffer[start:end] = self.draw_all
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_5 = PyObject_Length(__pyx_t_7); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_5 = PyObject_Length(__pyx_t_7); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_7 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_XDECREF_SET(__pyx_v_end, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":214
+  /* "LEDSerialExpander.pyx":219
  *         end   = self.draw_all_offset+len(self.draw_all)
  * 
  *         self.buffer[start:end] = self.draw_all             # <<<<<<<<<<<<<<
  *         cdef unsigned char* bufstart = self.buffer
  *         bufstart+= self.draw_all_offset
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (__Pyx_PyObject_SetSlice(__pyx_t_7, __pyx_t_1, 0, 0, &__pyx_v_start, &__pyx_v_end, NULL, 0, 0, 1) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
+  if (__Pyx_PyObject_SetSlice(__pyx_t_7, __pyx_t_1, 0, 0, &__pyx_v_start, &__pyx_v_end, NULL, 0, 0, 1) < 0) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":215
+  /* "LEDSerialExpander.pyx":220
  * 
  *         self.buffer[start:end] = self.draw_all
  *         cdef unsigned char* bufstart = self.buffer             # <<<<<<<<<<<<<<
  *         bufstart+= self.draw_all_offset
  *         crc(bufstart,<int>6)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_17 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_17) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_17 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_17) && PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L1_error)
   __pyx_v_bufstart = __pyx_t_17;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":216
+  /* "LEDSerialExpander.pyx":221
  *         self.buffer[start:end] = self.draw_all
  *         cdef unsigned char* bufstart = self.buffer
  *         bufstart+= self.draw_all_offset             # <<<<<<<<<<<<<<
  *         crc(bufstart,<int>6)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_all_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_bufstart = (__pyx_v_bufstart + __pyx_t_5);
 
-  /* "LEDSerialExpander.pyx":217
+  /* "LEDSerialExpander.pyx":222
  *         cdef unsigned char* bufstart = self.buffer
  *         bufstart+= self.draw_all_offset
  *         crc(bufstart,<int>6)             # <<<<<<<<<<<<<<
@@ -4744,7 +4744,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
  */
   __pyx_f_17LEDSerialExpander_crc(__pyx_v_bufstart, ((int)6));
 
-  /* "LEDSerialExpander.pyx":127
+  /* "LEDSerialExpander.pyx":132
  * 
  *     #one time setup run
  *     def __setup(self):             # <<<<<<<<<<<<<<
@@ -4780,7 +4780,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_2__setup(CYTHO
   return __pyx_r;
 }
 
-/* "LEDSerialExpander.pyx":221
+/* "LEDSerialExpander.pyx":226
  *     # main write:
  *     # data can be (dict of bytearrays) or (just one bytearray that gets seperated according to configuration)
  *     def write (self,data):             # <<<<<<<<<<<<<<
@@ -4823,11 +4823,11 @@ static PyObject *__pyx_pw_17LEDSerialExpander_17LEDSerialExpander_5write(PyObjec
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_data)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("write", 1, 2, 2, 1); __PYX_ERR(0, 221, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("write", 1, 2, 2, 1); __PYX_ERR(0, 226, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "write") < 0)) __PYX_ERR(0, 221, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "write") < 0)) __PYX_ERR(0, 226, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4840,7 +4840,7 @@ static PyObject *__pyx_pw_17LEDSerialExpander_17LEDSerialExpander_5write(PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("write", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 221, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("write", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 226, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("LEDSerialExpander.LEDSerialExpander.write", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4883,29 +4883,29 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("write", 0);
 
-  /* "LEDSerialExpander.pyx":227
+  /* "LEDSerialExpander.pyx":232
  * 
  *         #FPS display
  *         if self.fps_show:             # <<<<<<<<<<<<<<
  *             now = time.time()
  *             self.fps += 1
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps_show); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps_show); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "LEDSerialExpander.pyx":228
+    /* "LEDSerialExpander.pyx":233
  *         #FPS display
  *         if self.fps_show:
  *             now = time.time()             # <<<<<<<<<<<<<<
  *             self.fps += 1
  *             if now > math.ceil(self.frametime):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -4920,40 +4920,40 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     }
     __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_now = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "LEDSerialExpander.pyx":229
+    /* "LEDSerialExpander.pyx":234
  *         if self.fps_show:
  *             now = time.time()
  *             self.fps += 1             # <<<<<<<<<<<<<<
  *             if now > math.ceil(self.frametime):
  *                 print ("FPS: %s" %self.fps)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 229, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_t_4) < 0) __PYX_ERR(0, 229, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_t_4) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "LEDSerialExpander.pyx":230
+    /* "LEDSerialExpander.pyx":235
  *             now = time.time()
  *             self.fps += 1
  *             if now > math.ceil(self.frametime):             # <<<<<<<<<<<<<<
  *                 print ("FPS: %s" %self.fps)
  *                 self.fps = 0
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_math); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_math); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ceil); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ceil); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_frametime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_frametime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4968,40 +4968,40 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyObject_RichCompare(__pyx_v_now, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(__pyx_v_now, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_2) {
 
-      /* "LEDSerialExpander.pyx":231
+      /* "LEDSerialExpander.pyx":236
  *             self.fps += 1
  *             if now > math.ceil(self.frametime):
  *                 print ("FPS: %s" %self.fps)             # <<<<<<<<<<<<<<
  *                 self.fps = 0
  *             self.frametime = now
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_fps); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_FPS_s, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_FPS_s, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (__Pyx_PrintOne(0, __pyx_t_4) < 0) __PYX_ERR(0, 231, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_4) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "LEDSerialExpander.pyx":232
+      /* "LEDSerialExpander.pyx":237
  *             if now > math.ceil(self.frametime):
  *                 print ("FPS: %s" %self.fps)
  *                 self.fps = 0             # <<<<<<<<<<<<<<
  *             self.frametime = now
  * 
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_int_0) < 0) __PYX_ERR(0, 232, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fps, __pyx_int_0) < 0) __PYX_ERR(0, 237, __pyx_L1_error)
 
-      /* "LEDSerialExpander.pyx":230
+      /* "LEDSerialExpander.pyx":235
  *             now = time.time()
  *             self.fps += 1
  *             if now > math.ceil(self.frametime):             # <<<<<<<<<<<<<<
@@ -5010,16 +5010,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
     }
 
-    /* "LEDSerialExpander.pyx":233
+    /* "LEDSerialExpander.pyx":238
  *                 print ("FPS: %s" %self.fps)
  *                 self.fps = 0
  *             self.frametime = now             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_frametime, __pyx_v_now) < 0) __PYX_ERR(0, 233, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_frametime, __pyx_v_now) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
 
-    /* "LEDSerialExpander.pyx":227
+    /* "LEDSerialExpander.pyx":232
  * 
  *         #FPS display
  *         if self.fps_show:             # <<<<<<<<<<<<<<
@@ -5028,7 +5028,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
   }
 
-  /* "LEDSerialExpander.pyx":236
+  /* "LEDSerialExpander.pyx":241
  * 
  * 
  *         if isinstance(data,bytearray): # one bytearray             # <<<<<<<<<<<<<<
@@ -5039,7 +5039,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
   __pyx_t_6 = (__pyx_t_2 != 0);
   if (__pyx_t_6) {
 
-    /* "LEDSerialExpander.pyx":238
+    /* "LEDSerialExpander.pyx":243
  *         if isinstance(data,bytearray): # one bytearray
  * 
  *             start = 0             # <<<<<<<<<<<<<<
@@ -5049,16 +5049,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     __Pyx_INCREF(__pyx_int_0);
     __pyx_v_start = __pyx_int_0;
 
-    /* "LEDSerialExpander.pyx":239
+    /* "LEDSerialExpander.pyx":244
  * 
  *             start = 0
  *             for channel,c in self.config.items():             # <<<<<<<<<<<<<<
  *                 end = start+(c['data_bytes'])
  *                 buf_pointer = self.buffer
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -5073,16 +5073,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     }
     __pyx_t_4 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
       __pyx_t_1 = __pyx_t_4; __Pyx_INCREF(__pyx_t_1); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+      __pyx_t_7 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 239, __pyx_L1_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 244, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     for (;;) {
@@ -5090,17 +5090,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         if (likely(PyList_CheckExact(__pyx_t_1))) {
           if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
+          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 244, __pyx_L1_error)
           #else
-          __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
         } else {
           if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
+          __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 244, __pyx_L1_error)
           #else
-          __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
         }
@@ -5110,7 +5110,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 239, __pyx_L1_error)
+            else __PYX_ERR(0, 244, __pyx_L1_error)
           }
           break;
         }
@@ -5122,7 +5122,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 239, __pyx_L1_error)
+          __PYX_ERR(0, 244, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -5135,15 +5135,15 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_INCREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_5);
         #else
-        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
@@ -5151,7 +5151,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_GOTREF(__pyx_t_3);
         index = 1; __pyx_t_5 = __pyx_t_10(__pyx_t_9); if (unlikely(!__pyx_t_5)) goto __pyx_L8_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 239, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L9_unpacking_done;
@@ -5159,7 +5159,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 239, __pyx_L1_error)
+        __PYX_ERR(0, 244, __pyx_L1_error)
         __pyx_L9_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_channel, __pyx_t_3);
@@ -5167,81 +5167,81 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
       __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "LEDSerialExpander.pyx":240
+      /* "LEDSerialExpander.pyx":245
  *             start = 0
  *             for channel,c in self.config.items():
  *                 end = start+(c['data_bytes'])             # <<<<<<<<<<<<<<
  *                 buf_pointer = self.buffer
  *                 buf_pointer += c['data_offset']
  */
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyNumber_Add(__pyx_v_start, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_Add(__pyx_v_start, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_end, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "LEDSerialExpander.pyx":241
+      /* "LEDSerialExpander.pyx":246
  *             for channel,c in self.config.items():
  *                 end = start+(c['data_bytes'])
  *                 buf_pointer = self.buffer             # <<<<<<<<<<<<<<
  *                 buf_pointer += c['data_offset']
  *                 data_pointer = data
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_5); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_5); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 246, __pyx_L1_error)
       __pyx_v_buf_pointer = __pyx_t_11;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "LEDSerialExpander.pyx":242
+      /* "LEDSerialExpander.pyx":247
  *                 end = start+(c['data_bytes'])
  *                 buf_pointer = self.buffer
  *                 buf_pointer += c['data_offset']             # <<<<<<<<<<<<<<
  *                 data_pointer = data
  *                 data_pointer+= start
  */
-      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_offset); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_offset); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_buf_pointer = (__pyx_v_buf_pointer + __pyx_t_12);
 
-      /* "LEDSerialExpander.pyx":243
+      /* "LEDSerialExpander.pyx":248
  *                 buf_pointer = self.buffer
  *                 buf_pointer += c['data_offset']
  *                 data_pointer = data             # <<<<<<<<<<<<<<
  *                 data_pointer+= start
  *                 s = (c['data_bytes'])
  */
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_v_data); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_v_data); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 248, __pyx_L1_error)
       __pyx_v_data_pointer = __pyx_t_11;
 
-      /* "LEDSerialExpander.pyx":244
+      /* "LEDSerialExpander.pyx":249
  *                 buf_pointer += c['data_offset']
  *                 data_pointer = data
  *                 data_pointer+= start             # <<<<<<<<<<<<<<
  *                 s = (c['data_bytes'])
  *                 memcpy (buf_pointer,<unsigned char *>data_pointer,s)
  */
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_v_start); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_v_start); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 249, __pyx_L1_error)
       __pyx_v_data_pointer = (__pyx_v_data_pointer + __pyx_t_12);
 
-      /* "LEDSerialExpander.pyx":245
+      /* "LEDSerialExpander.pyx":250
  *                 data_pointer = data
  *                 data_pointer+= start
  *                 s = (c['data_bytes'])             # <<<<<<<<<<<<<<
  *                 memcpy (buf_pointer,<unsigned char *>data_pointer,s)
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 250, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_s = __pyx_t_13;
 
-      /* "LEDSerialExpander.pyx":246
+      /* "LEDSerialExpander.pyx":251
  *                 data_pointer+= start
  *                 s = (c['data_bytes'])
  *                 memcpy (buf_pointer,<unsigned char *>data_pointer,s)             # <<<<<<<<<<<<<<
@@ -5250,52 +5250,52 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
       (void)(memcpy(__pyx_v_buf_pointer, ((unsigned char *)__pyx_v_data_pointer), __pyx_v_s));
 
-      /* "LEDSerialExpander.pyx":248
+      /* "LEDSerialExpander.pyx":253
  *                 memcpy (buf_pointer,<unsigned char *>data_pointer,s)
  * 
  *                 buf_pointer = self.buffer             # <<<<<<<<<<<<<<
  *                 buf_pointer += c['header_offset']
  *                 s += c['header_size']
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 248, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_5); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 248, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_5); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 253, __pyx_L1_error)
       __pyx_v_buf_pointer = __pyx_t_11;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "LEDSerialExpander.pyx":249
+      /* "LEDSerialExpander.pyx":254
  * 
  *                 buf_pointer = self.buffer
  *                 buf_pointer += c['header_offset']             # <<<<<<<<<<<<<<
  *                 s += c['header_size']
  *                 crc(buf_pointer,s)
  */
-      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 249, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 254, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 249, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 254, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_buf_pointer = (__pyx_v_buf_pointer + __pyx_t_12);
 
-      /* "LEDSerialExpander.pyx":250
+      /* "LEDSerialExpander.pyx":255
  *                 buf_pointer = self.buffer
  *                 buf_pointer += c['header_offset']
  *                 s += c['header_size']             # <<<<<<<<<<<<<<
  *                 crc(buf_pointer,s)
  * 
  */
-      __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_s); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_s); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 250, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_c, __pyx_n_s_header_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 250, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_s = __pyx_t_13;
 
-      /* "LEDSerialExpander.pyx":251
+      /* "LEDSerialExpander.pyx":256
  *                 buf_pointer += c['header_offset']
  *                 s += c['header_size']
  *                 crc(buf_pointer,s)             # <<<<<<<<<<<<<<
@@ -5304,7 +5304,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
       __pyx_f_17LEDSerialExpander_crc(__pyx_v_buf_pointer, __pyx_v_s);
 
-      /* "LEDSerialExpander.pyx":253
+      /* "LEDSerialExpander.pyx":258
  *                 crc(buf_pointer,s)
  * 
  *                 start = end             # <<<<<<<<<<<<<<
@@ -5314,7 +5314,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
       __Pyx_INCREF(__pyx_v_end);
       __Pyx_DECREF_SET(__pyx_v_start, __pyx_v_end);
 
-      /* "LEDSerialExpander.pyx":239
+      /* "LEDSerialExpander.pyx":244
  * 
  *             start = 0
  *             for channel,c in self.config.items():             # <<<<<<<<<<<<<<
@@ -5324,7 +5324,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "LEDSerialExpander.pyx":236
+    /* "LEDSerialExpander.pyx":241
  * 
  * 
  *         if isinstance(data,bytearray): # one bytearray             # <<<<<<<<<<<<<<
@@ -5334,7 +5334,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     goto __pyx_L5;
   }
 
-  /* "LEDSerialExpander.pyx":256
+  /* "LEDSerialExpander.pyx":261
  * 
  * 
  *         elif isinstance(data,dict): # dict of bytearrays             # <<<<<<<<<<<<<<
@@ -5345,14 +5345,14 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
   __pyx_t_2 = (__pyx_t_6 != 0);
   if (likely(__pyx_t_2)) {
 
-    /* "LEDSerialExpander.pyx":258
+    /* "LEDSerialExpander.pyx":263
  *         elif isinstance(data,dict): # dict of bytearrays
  * 
  *             for channel, c in data.items(): #channel is int, c is bytearray of data             # <<<<<<<<<<<<<<
  *                 expected = self.config[channel]['data_bytes']
  *                 if len(c) != expected:
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_data, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_data, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5366,16 +5366,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     }
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+      __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 258, __pyx_L1_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 263, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -5383,17 +5383,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 258, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 263, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 258, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 263, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -5403,7 +5403,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 258, __pyx_L1_error)
+            else __PYX_ERR(0, 263, __pyx_L1_error)
           }
           break;
         }
@@ -5415,7 +5415,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 258, __pyx_L1_error)
+          __PYX_ERR(0, 263, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -5428,15 +5428,15 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_INCREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_5);
         #else
-        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 263, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 263, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
@@ -5444,7 +5444,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_GOTREF(__pyx_t_4);
         index = 1; __pyx_t_5 = __pyx_t_10(__pyx_t_9); if (unlikely(!__pyx_t_5)) goto __pyx_L12_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 263, __pyx_L1_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L13_unpacking_done;
@@ -5452,7 +5452,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 258, __pyx_L1_error)
+        __PYX_ERR(0, 263, __pyx_L1_error)
         __pyx_L13_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_channel, __pyx_t_4);
@@ -5460,51 +5460,51 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
       __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "LEDSerialExpander.pyx":259
+      /* "LEDSerialExpander.pyx":264
  * 
  *             for channel, c in data.items(): #channel is int, c is bytearray of data
  *                 expected = self.config[channel]['data_bytes']             # <<<<<<<<<<<<<<
  *                 if len(c) != expected:
  *                     raise ValueError("Channel %s: %s bytes passed, %s expected "%(channel,len(c),expected))
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 264, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_XDECREF_SET(__pyx_v_expected, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":260
+      /* "LEDSerialExpander.pyx":265
  *             for channel, c in data.items(): #channel is int, c is bytearray of data
  *                 expected = self.config[channel]['data_bytes']
  *                 if len(c) != expected:             # <<<<<<<<<<<<<<
  *                     raise ValueError("Channel %s: %s bytes passed, %s expected "%(channel,len(c),expected))
  *                 #self.__instruction(c,channel)
  */
-      __pyx_t_12 = PyObject_Length(__pyx_v_c); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 260, __pyx_L1_error)
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
+      __pyx_t_12 = PyObject_Length(__pyx_v_c); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 265, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_v_expected, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 260, __pyx_L1_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_v_expected, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 265, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 260, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 265, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (unlikely(__pyx_t_2)) {
 
-        /* "LEDSerialExpander.pyx":261
+        /* "LEDSerialExpander.pyx":266
  *                 expected = self.config[channel]['data_bytes']
  *                 if len(c) != expected:
  *                     raise ValueError("Channel %s: %s bytes passed, %s expected "%(channel,len(c),expected))             # <<<<<<<<<<<<<<
  *                 #self.__instruction(c,channel)
  * 
  */
-        __pyx_t_12 = PyObject_Length(__pyx_v_c); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 261, __pyx_L1_error)
-        __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+        __pyx_t_12 = PyObject_Length(__pyx_v_c); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 266, __pyx_L1_error)
+        __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_v_channel);
         __Pyx_GIVEREF(__pyx_v_channel);
@@ -5515,17 +5515,17 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
         __Pyx_GIVEREF(__pyx_v_expected);
         PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_expected);
         __pyx_t_5 = 0;
-        __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Channel_s_s_bytes_passed_s_expec, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Channel_s_s_bytes_passed_s_expec, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_Raise(__pyx_t_1, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __PYX_ERR(0, 261, __pyx_L1_error)
+        __PYX_ERR(0, 266, __pyx_L1_error)
 
-        /* "LEDSerialExpander.pyx":260
+        /* "LEDSerialExpander.pyx":265
  *             for channel, c in data.items(): #channel is int, c is bytearray of data
  *                 expected = self.config[channel]['data_bytes']
  *                 if len(c) != expected:             # <<<<<<<<<<<<<<
@@ -5534,68 +5534,68 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
       }
 
-      /* "LEDSerialExpander.pyx":265
+      /* "LEDSerialExpander.pyx":270
  * 
  *                 #print (' '.join('{:02x}'.format(x) for x in self.buffer))
  *                 buf_pointer = self.buffer             # <<<<<<<<<<<<<<
  *                 buf_pointer += self.config[channel]['data_offset']
  *                 data_pointer = c
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 265, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 270, __pyx_L1_error)
       __pyx_v_buf_pointer = __pyx_t_11;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":266
+      /* "LEDSerialExpander.pyx":271
  *                 #print (' '.join('{:02x}'.format(x) for x in self.buffer))
  *                 buf_pointer = self.buffer
  *                 buf_pointer += self.config[channel]['data_offset']             # <<<<<<<<<<<<<<
  *                 data_pointer = c
  *                 s = (self.config[channel]['data_bytes'])
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 266, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_buf_pointer = (__pyx_v_buf_pointer + __pyx_t_12);
 
-      /* "LEDSerialExpander.pyx":267
+      /* "LEDSerialExpander.pyx":272
  *                 buf_pointer = self.buffer
  *                 buf_pointer += self.config[channel]['data_offset']
  *                 data_pointer = c             # <<<<<<<<<<<<<<
  *                 s = (self.config[channel]['data_bytes'])
  *                 memcpy (buf_pointer,<unsigned char*>data_pointer,s)
  */
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_v_c); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_v_c); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 272, __pyx_L1_error)
       __pyx_v_data_pointer = __pyx_t_11;
 
-      /* "LEDSerialExpander.pyx":268
+      /* "LEDSerialExpander.pyx":273
  *                 buf_pointer += self.config[channel]['data_offset']
  *                 data_pointer = c
  *                 s = (self.config[channel]['data_bytes'])             # <<<<<<<<<<<<<<
  *                 memcpy (buf_pointer,<unsigned char*>data_pointer,s)
  * 
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_data_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_s = __pyx_t_13;
 
-      /* "LEDSerialExpander.pyx":269
+      /* "LEDSerialExpander.pyx":274
  *                 data_pointer = c
  *                 s = (self.config[channel]['data_bytes'])
  *                 memcpy (buf_pointer,<unsigned char*>data_pointer,s)             # <<<<<<<<<<<<<<
@@ -5604,74 +5604,74 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  */
       (void)(memcpy(__pyx_v_buf_pointer, ((unsigned char *)__pyx_v_data_pointer), __pyx_v_s));
 
-      /* "LEDSerialExpander.pyx":271
+      /* "LEDSerialExpander.pyx":276
  *                 memcpy (buf_pointer,<unsigned char*>data_pointer,s)
  * 
  *                 buf_pointer = self.buffer             # <<<<<<<<<<<<<<
  *                 buf_pointer += self.config[channel]['header_offset']
  *                 s += self.config[channel]['header_size']
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 271, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_AsWritableUString(__pyx_t_1); if (unlikely((!__pyx_t_11) && PyErr_Occurred())) __PYX_ERR(0, 276, __pyx_L1_error)
       __pyx_v_buf_pointer = __pyx_t_11;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "LEDSerialExpander.pyx":272
+      /* "LEDSerialExpander.pyx":277
  * 
  *                 buf_pointer = self.buffer
  *                 buf_pointer += self.config[channel]['header_offset']             # <<<<<<<<<<<<<<
  *                 s += self.config[channel]['header_size']
  *                 crc(buf_pointer,<int>expected)
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 277, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_channel); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_n_s_header_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 277, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 272, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_12 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 277, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_buf_pointer = (__pyx_v_buf_pointer + __pyx_t_12);
 
-      /* "LEDSerialExpander.pyx":273
+      /* "LEDSerialExpander.pyx":278
  *                 buf_pointer = self.buffer
  *                 buf_pointer += self.config[channel]['header_offset']
  *                 s += self.config[channel]['header_size']             # <<<<<<<<<<<<<<
  *                 crc(buf_pointer,<int>expected)
  * 
  */
-      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_channel); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_v_channel); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_4, __pyx_n_s_header_size); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_4, __pyx_n_s_header_size); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 278, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_s = __pyx_t_13;
 
-      /* "LEDSerialExpander.pyx":274
+      /* "LEDSerialExpander.pyx":279
  *                 buf_pointer += self.config[channel]['header_offset']
  *                 s += self.config[channel]['header_size']
  *                 crc(buf_pointer,<int>expected)             # <<<<<<<<<<<<<<
  * 
  *         else:
  */
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_v_expected); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 274, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_v_expected); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 279, __pyx_L1_error)
       __pyx_f_17LEDSerialExpander_crc(__pyx_v_buf_pointer, ((int)__pyx_t_13));
 
-      /* "LEDSerialExpander.pyx":258
+      /* "LEDSerialExpander.pyx":263
  *         elif isinstance(data,dict): # dict of bytearrays
  * 
  *             for channel, c in data.items(): #channel is int, c is bytearray of data             # <<<<<<<<<<<<<<
@@ -5681,7 +5681,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "LEDSerialExpander.pyx":256
+    /* "LEDSerialExpander.pyx":261
  * 
  * 
  *         elif isinstance(data,dict): # dict of bytearrays             # <<<<<<<<<<<<<<
@@ -5691,7 +5691,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
     goto __pyx_L5;
   }
 
-  /* "LEDSerialExpander.pyx":277
+  /* "LEDSerialExpander.pyx":282
  * 
  *         else:
  *             raise ValueError("pixel data can be a dict of bytearrays or one large bytearray with data in order of channels")             # <<<<<<<<<<<<<<
@@ -5699,22 +5699,22 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
  *         #print (' '.join('{:02x}'.format(x) for x in self.buffer))
  */
   /*else*/ {
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 277, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 277, __pyx_L1_error)
+    __PYX_ERR(0, 282, __pyx_L1_error)
   }
   __pyx_L5:;
 
-  /* "LEDSerialExpander.pyx":281
+  /* "LEDSerialExpander.pyx":286
  *         #print (' '.join('{:02x}'.format(x) for x in self.buffer))
  *         #print ("size: %s "%len(self.buffer))
  *         self.__draw()             # <<<<<<<<<<<<<<
  * 
  * #DRAW_ALL command and __send
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__draw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__draw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -5728,12 +5728,12 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "LEDSerialExpander.pyx":221
+  /* "LEDSerialExpander.pyx":226
  *     # main write:
  *     # data can be (dict of bytearrays) or (just one bytearray that gets seperated according to configuration)
  *     def write (self,data):             # <<<<<<<<<<<<<<
@@ -5764,7 +5764,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_4write(CYTHON_
   return __pyx_r;
 }
 
-/* "LEDSerialExpander.pyx":284
+/* "LEDSerialExpander.pyx":289
  * 
  * #DRAW_ALL command and __send
  *     def __draw(self):             # <<<<<<<<<<<<<<
@@ -5802,31 +5802,31 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__draw", 0);
 
-  /* "LEDSerialExpander.pyx":288
+  /* "LEDSerialExpander.pyx":293
  * 
  *         #Timing
  *         if self.send_speed > .0036:             # <<<<<<<<<<<<<<
  *             self.send_speed = .0036
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_send_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_send_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_float__0036, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_float__0036, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "LEDSerialExpander.pyx":289
+    /* "LEDSerialExpander.pyx":294
  *         #Timing
  *         if self.send_speed > .0036:
  *             self.send_speed = .0036             # <<<<<<<<<<<<<<
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  *         now = time.time()
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_float__0036) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_send_speed, __pyx_float__0036) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
 
-    /* "LEDSerialExpander.pyx":288
+    /* "LEDSerialExpander.pyx":293
  * 
  *         #Timing
  *         if self.send_speed > .0036:             # <<<<<<<<<<<<<<
@@ -5835,40 +5835,40 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
  */
   }
 
-  /* "LEDSerialExpander.pyx":290
+  /* "LEDSerialExpander.pyx":295
  *         if self.send_speed > .0036:
  *             self.send_speed = .0036
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send             # <<<<<<<<<<<<<<
  *         now = time.time()
  *         #print ("when: %s"%when)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_draw_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_send_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_send_speed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_when = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":291
+  /* "LEDSerialExpander.pyx":296
  *             self.send_speed = .0036
  *         when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
  *         now = time.time()             # <<<<<<<<<<<<<<
  *         #print ("when: %s"%when)
  *         #print ("now: %s"%now)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -5883,49 +5883,49 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_now = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":295
+  /* "LEDSerialExpander.pyx":300
  *         #print ("now: %s"%now)
  *         #print ()
  *         if when > now:             # <<<<<<<<<<<<<<
  * 
  *         #if self.draw_time >= now - self.draw_speed: # (self.largest_channel/160): # max this can be is 7.2ms, as largest_channel can be up to 720bytes
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_when, __pyx_v_now, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_when, __pyx_v_now, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "LEDSerialExpander.pyx":299
+    /* "LEDSerialExpander.pyx":304
  *         #if self.draw_time >= now - self.draw_speed: # (self.largest_channel/160): # max this can be is 7.2ms, as largest_channel can be up to 720bytes
  *             # wait = (self.draw_time + self.draw_speed - self.send_speed) - now
  *             wait = when - now             # <<<<<<<<<<<<<<
  *             #print ("draw time %s"%self.draw_time)
  *             #print ("draw speed %s"%self.draw_speed)
  */
-    __pyx_t_2 = PyNumber_Subtract(__pyx_v_when, __pyx_v_now); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 299, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_v_when, __pyx_v_now); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_wait = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "LEDSerialExpander.pyx":304
+    /* "LEDSerialExpander.pyx":309
  *             #print ("send speed %s"%self.send_speed)
  *             #print ("wait %s"%wait)
  *             if wait < 0:             # <<<<<<<<<<<<<<
  *                 wait = 0
  * 
  */
-    __pyx_t_2 = PyObject_RichCompare(__pyx_v_wait, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 304, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_v_wait, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_3) {
 
-      /* "LEDSerialExpander.pyx":305
+      /* "LEDSerialExpander.pyx":310
  *             #print ("wait %s"%wait)
  *             if wait < 0:
  *                 wait = 0             # <<<<<<<<<<<<<<
@@ -5935,7 +5935,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
       __Pyx_INCREF(__pyx_int_0);
       __Pyx_DECREF_SET(__pyx_v_wait, __pyx_int_0);
 
-      /* "LEDSerialExpander.pyx":304
+      /* "LEDSerialExpander.pyx":309
  *             #print ("send speed %s"%self.send_speed)
  *             #print ("wait %s"%wait)
  *             if wait < 0:             # <<<<<<<<<<<<<<
@@ -5944,19 +5944,19 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
  */
     }
 
-    /* "LEDSerialExpander.pyx":307
+    /* "LEDSerialExpander.pyx":312
  *                 wait = 0
  * 
  *             time.sleep(wait+.0001) #add cushion             # <<<<<<<<<<<<<<
  * 
  *         self.draw_time = time.time()
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sleep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sleep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyFloat_AddObjC(__pyx_v_wait, __pyx_float__0001, .0001, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyFloat_AddObjC(__pyx_v_wait, __pyx_float__0001, .0001, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -5971,12 +5971,12 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
     __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 307, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "LEDSerialExpander.pyx":295
+    /* "LEDSerialExpander.pyx":300
  *         #print ("now: %s"%now)
  *         #print ()
  *         if when > now:             # <<<<<<<<<<<<<<
@@ -5985,16 +5985,16 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
  */
   }
 
-  /* "LEDSerialExpander.pyx":309
+  /* "LEDSerialExpander.pyx":314
  *             time.sleep(wait+.0001) #add cushion
  * 
  *         self.draw_time = time.time()             # <<<<<<<<<<<<<<
  *         self.__send()
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -6009,20 +6009,20 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_time, __pyx_t_2) < 0) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_draw_time, __pyx_t_2) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":310
+  /* "LEDSerialExpander.pyx":315
  * 
  *         self.draw_time = time.time()
  *         self.__send()             # <<<<<<<<<<<<<<
  * 
  *     #UART TX
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__send); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_LEDSerialExpander__send); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -6036,12 +6036,12 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":284
+  /* "LEDSerialExpander.pyx":289
  * 
  * #DRAW_ALL command and __send
  *     def __draw(self):             # <<<<<<<<<<<<<<
@@ -6068,7 +6068,7 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_6__draw(CYTHON
   return __pyx_r;
 }
 
-/* "LEDSerialExpander.pyx":313
+/* "LEDSerialExpander.pyx":318
  * 
  *     #UART TX
  *     def __send(self):             # <<<<<<<<<<<<<<
@@ -6102,18 +6102,18 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_8__send(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__send", 0);
 
-  /* "LEDSerialExpander.pyx":314
+  /* "LEDSerialExpander.pyx":319
  *     #UART TX
  *     def __send(self):
  *         self.port.write(self.buffer)             # <<<<<<<<<<<<<<
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_port); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_port); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_write); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_buffer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -6128,12 +6128,12 @@ static PyObject *__pyx_pf_17LEDSerialExpander_17LEDSerialExpander_8__send(CYTHON
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":313
+  /* "LEDSerialExpander.pyx":318
  * 
  *     #UART TX
  *     def __send(self):             # <<<<<<<<<<<<<<
@@ -20770,8 +20770,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 151, __pyx_L1_error)
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 162, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 109, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(2, 180, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(2, 2, __pyx_L1_error)
@@ -20787,47 +20787,47 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "LEDSerialExpander.pyx":154
+  /* "LEDSerialExpander.pyx":159
  * 
  *                 if c['bpp'] * c['size'] > 2400: # 800 RGB or 600 RGBW
  *                     raise ValueError("Each channel supports up to 800 RGB or 600 RGBW pixels")             # <<<<<<<<<<<<<<
  * 
  *                 c['order_byte'] = 0
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Each_channel_supports_up_to_800); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Each_channel_supports_up_to_800); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "LEDSerialExpander.pyx":172
+  /* "LEDSerialExpander.pyx":177
  *                     self.largest_channel = c['data_bytes']
  * 
  *                 header = bytearray(b"UPXL") #magic start sequence             # <<<<<<<<<<<<<<
  *                 header.append (channel) # channel 1 byte
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_b_UPXL); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_b_UPXL); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "LEDSerialExpander.pyx":176
+  /* "LEDSerialExpander.pyx":181
  *                 header.append (c['type']) # recordtype 1=ws2812 2=draw all
  *                 if c['type'] != 1:
  *                     raise ValueError("Non ws281x not supported yet")             # <<<<<<<<<<<<<<
  * 
  *                 instruction = bytearray()
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Non_ws281x_not_supported_yet); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Non_ws281x_not_supported_yet); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 181, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "LEDSerialExpander.pyx":277
+  /* "LEDSerialExpander.pyx":282
  * 
  *         else:
  *             raise ValueError("pixel data can be a dict of bytearrays or one large bytearray with data in order of channels")             # <<<<<<<<<<<<<<
  * 
  *         #print (' '.join('{:02x}'.format(x) for x in self.buffer))
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_pixel_data_can_be_a_dict_of_byte); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_pixel_data_can_be_a_dict_of_byte); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
@@ -21023,68 +21023,68 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "LEDSerialExpander.pyx":111
+  /* "LEDSerialExpander.pyx":116
  *     # baud: should be one of the standardized values
  *     # fps_show: shows fps counter
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):             # <<<<<<<<<<<<<<
  *         self.uart = uart
  *         self.baud = baud
  */
-  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_config, __pyx_n_s_uart, __pyx_n_s_baud, __pyx_n_s_fps_show); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_config, __pyx_n_s_uart, __pyx_n_s_baud, __pyx_n_s_fps_show); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_init, 111, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 111, __pyx_L1_error)
-  __pyx_tuple__25 = PyTuple_Pack(3, ((PyObject*)__pyx_kp_s_dev_ttyS0), ((PyObject *)__pyx_int_2000000), ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_init, 116, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(3, ((PyObject*)__pyx_kp_s_dev_ttyS0), ((PyObject *)__pyx_int_2000000), ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "LEDSerialExpander.pyx":127
+  /* "LEDSerialExpander.pyx":132
  * 
  *     #one time setup run
  *     def __setup(self):             # <<<<<<<<<<<<<<
  *         self.size = 0 #total pixels among all strips
  *         self.port = serial.Serial(self.uart, baudrate=self.baud, timeout=3)  # 3,4,zero w all use ttyS0, else ttyAMA0
  */
-  __pyx_tuple__26 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_channel, __pyx_n_s_c, __pyx_n_s_i, __pyx_n_s_color, __pyx_n_s_header, __pyx_n_s_instruction, __pyx_n_s_h_2, __pyx_n_s_start, __pyx_n_s_end, __pyx_n_s_bufstart); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_channel, __pyx_n_s_c, __pyx_n_s_i, __pyx_n_s_color, __pyx_n_s_header, __pyx_n_s_instruction, __pyx_n_s_h_2, __pyx_n_s_start, __pyx_n_s_end, __pyx_n_s_bufstart); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_setup, 127, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_setup, 132, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 132, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":221
+  /* "LEDSerialExpander.pyx":226
  *     # main write:
  *     # data can be (dict of bytearrays) or (just one bytearray that gets seperated according to configuration)
  *     def write (self,data):             # <<<<<<<<<<<<<<
  *         cdef unsigned char* buf_pointer
  *         cdef unsigned char* data_pointer
  */
-  __pyx_tuple__28 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_data, __pyx_n_s_buf_pointer, __pyx_n_s_data_pointer, __pyx_n_s_s, __pyx_n_s_now, __pyx_n_s_start, __pyx_n_s_channel, __pyx_n_s_c, __pyx_n_s_end, __pyx_n_s_expected); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_data, __pyx_n_s_buf_pointer, __pyx_n_s_data_pointer, __pyx_n_s_s, __pyx_n_s_now, __pyx_n_s_start, __pyx_n_s_channel, __pyx_n_s_c, __pyx_n_s_end, __pyx_n_s_expected); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_write, 221, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_write, 226, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 226, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":284
+  /* "LEDSerialExpander.pyx":289
  * 
  * #DRAW_ALL command and __send
  *     def __draw(self):             # <<<<<<<<<<<<<<
  *         #self.__send(self.draw_all)
  * 
  */
-  __pyx_tuple__30 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_when, __pyx_n_s_now, __pyx_n_s_wait); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_when, __pyx_n_s_now, __pyx_n_s_wait); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_draw, 284, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_draw, 289, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 289, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":313
+  /* "LEDSerialExpander.pyx":318
  * 
  *     #UART TX
  *     def __send(self):             # <<<<<<<<<<<<<<
  *         self.port.write(self.buffer)
  * 
  */
-  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_send, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_LEDSerialExpander_pyx, __pyx_n_s_send, 318, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 318, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -21803,80 +21803,80 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "LEDSerialExpander.pyx":29
+  /* "LEDSerialExpander.pyx":34
  * '''
  * 
  * import serial             # <<<<<<<<<<<<<<
  * import time
  * import math
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_serial, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_serial, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_serial, __pyx_t_1) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_serial, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":30
+  /* "LEDSerialExpander.pyx":35
  * 
  * import serial
  * import time             # <<<<<<<<<<<<<<
  * import math
  * from struct import pack
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_time, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_time, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_time, __pyx_t_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_time, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":31
+  /* "LEDSerialExpander.pyx":36
  * import serial
  * import time
  * import math             # <<<<<<<<<<<<<<
  * from struct import pack
  * from cpython cimport array
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_math, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_math, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_math, __pyx_t_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_math, __pyx_t_1) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":32
+  /* "LEDSerialExpander.pyx":37
  * import time
  * import math
  * from struct import pack             # <<<<<<<<<<<<<<
  * from cpython cimport array
  * from libc.string cimport memcpy
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_pack);
   __Pyx_GIVEREF(__pyx_n_s_pack);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_pack);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_struct, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_struct, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pack, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pack, __pyx_t_1) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":36
+  /* "LEDSerialExpander.pyx":41
  * from libc.string cimport memcpy
  * 
  * LARGEST_STRIP_BYTES = 2400             # <<<<<<<<<<<<<<
  * 
  * CRC = [ 0x00000000, 0x77073096, 0xee0e612c,
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LARGEST_STRIP_BYTES, __pyx_int_2400) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LARGEST_STRIP_BYTES, __pyx_int_2400) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
 
-  /* "LEDSerialExpander.pyx":38
+  /* "LEDSerialExpander.pyx":43
  * LARGEST_STRIP_BYTES = 2400
  * 
  * CRC = [ 0x00000000, 0x77073096, 0xee0e612c,             # <<<<<<<<<<<<<<
  *     0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832,
  *     0x79dcb8a4, 0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07,
  */
-  __pyx_t_2 = PyList_New(256); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(256); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -22646,19 +22646,19 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_int_755167117);
   __Pyx_GIVEREF(__pyx_int_755167117);
   PyList_SET_ITEM(__pyx_t_2, 255, __pyx_int_755167117);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_CRC, __pyx_t_2) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_CRC, __pyx_t_2) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":82
+  /* "LEDSerialExpander.pyx":87
  *     0xc4614ab8, 0x5d681b02, 0x2a6f2b94, 0xb40bbe37, 0xc30c8ea1, 0x5a05df1b,
  *     0x2d02ef8d]
  * cdef array.array crc_table256 = array.array('I',CRC)             # <<<<<<<<<<<<<<
  * cdef unsigned int[:] crcv = crc_table256
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_CRC); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_CRC); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_I);
   __Pyx_GIVEREF(__pyx_n_s_I);
@@ -22666,7 +22666,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_XGOTREF(((PyObject *)__pyx_v_17LEDSerialExpander_crc_table256));
@@ -22674,100 +22674,100 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "LEDSerialExpander.pyx":83
+  /* "LEDSerialExpander.pyx":88
  *     0x2d02ef8d]
  * cdef array.array crc_table256 = array.array('I',CRC)
  * cdef unsigned int[:] crcv = crc_table256             # <<<<<<<<<<<<<<
  * 
  * # in full c; avoids GIL
  */
-  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_int(((PyObject *)__pyx_v_17LEDSerialExpander_crc_table256), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_int(((PyObject *)__pyx_v_17LEDSerialExpander_crc_table256), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 88, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_17LEDSerialExpander_crcv, 1);
   __pyx_v_17LEDSerialExpander_crcv = __pyx_t_3;
   __pyx_t_3.memview = NULL;
   __pyx_t_3.data = NULL;
 
-  /* "LEDSerialExpander.pyx":105
+  /* "LEDSerialExpander.pyx":110
  *     memcpy(destination,<unsigned char*>&crc,4)
  * 
  * class LEDSerialExpander:             # <<<<<<<<<<<<<<
  *     # config: dict of dictionaries, each configuring a strip
  *     #     eg: { 0: {'size': 34, 'order': 'RGB', 'type': 1} , 4: {'size': 55, 'order': 'RGBW', 'type': 1}}
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_LEDSerialExpander, __pyx_n_s_LEDSerialExpander, (PyObject *) NULL, __pyx_n_s_LEDSerialExpander, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_LEDSerialExpander, __pyx_n_s_LEDSerialExpander, (PyObject *) NULL, __pyx_n_s_LEDSerialExpander, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "LEDSerialExpander.pyx":111
+  /* "LEDSerialExpander.pyx":116
  *     # baud: should be one of the standardized values
  *     # fps_show: shows fps counter
  *     def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):             # <<<<<<<<<<<<<<
  *         self.uart = uart
  *         self.baud = baud
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_1__init__, 0, __pyx_n_s_LEDSerialExpander___init, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_1__init__, 0, __pyx_n_s_LEDSerialExpander___init, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_1, __pyx_tuple__25);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":127
+  /* "LEDSerialExpander.pyx":132
  * 
  *     #one time setup run
  *     def __setup(self):             # <<<<<<<<<<<<<<
  *         self.size = 0 #total pixels among all strips
  *         self.port = serial.Serial(self.uart, baudrate=self.baud, timeout=3)  # 3,4,zero w all use ttyS0, else ttyAMA0
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_3__setup, 0, __pyx_n_s_LEDSerialExpander___setup, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_3__setup, 0, __pyx_n_s_LEDSerialExpander___setup, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__setup, __pyx_t_1) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__setup, __pyx_t_1) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":221
+  /* "LEDSerialExpander.pyx":226
  *     # main write:
  *     # data can be (dict of bytearrays) or (just one bytearray that gets seperated according to configuration)
  *     def write (self,data):             # <<<<<<<<<<<<<<
  *         cdef unsigned char* buf_pointer
  *         cdef unsigned char* data_pointer
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_5write, 0, __pyx_n_s_LEDSerialExpander_write, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_5write, 0, __pyx_n_s_LEDSerialExpander_write, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_write, __pyx_t_1) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_write, __pyx_t_1) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":284
+  /* "LEDSerialExpander.pyx":289
  * 
  * #DRAW_ALL command and __send
  *     def __draw(self):             # <<<<<<<<<<<<<<
  *         #self.__send(self.draw_all)
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_7__draw, 0, __pyx_n_s_LEDSerialExpander___draw, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_7__draw, 0, __pyx_n_s_LEDSerialExpander___draw, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__draw, __pyx_t_1) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__draw, __pyx_t_1) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":313
+  /* "LEDSerialExpander.pyx":318
  * 
  *     #UART TX
  *     def __send(self):             # <<<<<<<<<<<<<<
  *         self.port.write(self.buffer)
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_9__send, 0, __pyx_n_s_LEDSerialExpander___send, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_17LEDSerialExpander_17LEDSerialExpander_9__send, 0, __pyx_n_s_LEDSerialExpander___send, NULL, __pyx_n_s_LEDSerialExpander, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__send, __pyx_t_1) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_LEDSerialExpander__send, __pyx_t_1) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "LEDSerialExpander.pyx":105
+  /* "LEDSerialExpander.pyx":110
  *     memcpy(destination,<unsigned char*>&crc,4)
  * 
  * class LEDSerialExpander:             # <<<<<<<<<<<<<<
  *     # config: dict of dictionaries, each configuring a strip
  *     #     eg: { 0: {'size': 34, 'order': 'RGB', 'type': 1} , 4: {'size': 55, 'order': 'RGBW', 'type': 1}}
  */
-  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_LEDSerialExpander, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_LEDSerialExpander, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LEDSerialExpander, __pyx_t_1) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LEDSerialExpander, __pyx_t_1) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 

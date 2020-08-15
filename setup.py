@@ -1,25 +1,24 @@
 #!/usr/bin/python3
-from distutils.core import setup
-from distutils.extension import Extension
+from setuptools import setup,find_packages
+from setuptools.extension import Extension
 from distutils.command.sdist import sdist as _sdist
+
 
 try:
     from Cython.Distutils import build_ext
+    use_cython = True
 except ImportError:
     use_cython = False
-else:
-    use_cython = True
 
-cmds = {}
+cmdclass = {}
 if use_cython:
-    
     extensions = [
-        Extension("LEDSerialExpanderBoard.DisplayLED", ["src/LEDSerialExpanderBoard.pyx"])
+        Extension("LEDSerialExpander", ["src/LEDSerialExpander.pyx"])
     ]
-    cmds.update({'build_ext': build_ext})
+    cmdclass['build_ext'] = build_ext
 else:
     extensions = [
-        Extension("LEDSerialExpanderBoard.DisplayLED", ["src/LEDSerialExpanderBoard.c"])
+        Extension("LEDSerialExpander", ["src/LEDSerialExpander.c"])
     ]
  
 class sdist(_sdist):
@@ -28,14 +27,20 @@ class sdist(_sdist):
         from Cython.Build import cythonize
         cythonize(extensions)
         _sdist.run(self)
-cmds['sdist'] = sdist
+            
+cmdclass['sdist'] = sdist
 
 with open("requirements.txt") as fp:
     install_requires = fp.read().strip().split("\n")
 
 setup(
-    name = "LEDSerialExpanderBoard",
+    name = "LEDSerialExpander",
+    url="https://github.com/branko623/LEDSerialExpander",
+    author = "Branko Mirkovic",
+    author_email = "branko623@gmail.com",
+    description = "Expander Board Python Driver",
+    packages = find_packages(),
     ext_modules=extensions,
-    cmdclass = cmds,
+    cmdclass = cmdclass,
     install_requires=install_requires
 )

@@ -1,8 +1,10 @@
+import random
+from LEDSerialExpander import LEDSerialExpander
+
 #TESTING 2 STRIPS on channel 0 and 1
-from import 
 strip0 = {'channel': 0, 'size':30, 'order': 'RBG' ,'type':1}
 strip1 = {'channel': 1, 'size':30, 'order': 'RBG' ,'type':1}
-display = LEDSerialExpanderBoard ([strip0,strip1],fps_show=True)
+display = LEDSerialExpander([strip0,strip1],fps_show=True)
 
 
 tot = strip0['size'] + strip1['size']
