@@ -89,7 +89,7 @@ Notes on fast framerates:
 This driver is capable of displaying pixels at a relatively high framerates (300+ FPS). This might however take some expiriementing. For larger setups (such as over 150 pixels), the data transfer rate will ultimately influence how many times per second you can pass pixel data. For smaller setups, it is possible to push your setup over 300 FPS. In order to achieve this, a parameter was included that can be passed to override the board creator's recommended wait time after a draw command is sent to the board. (draw_wait)  
 </li>
 <li>
-I would advise distributing your pixels as much as possible between the 8 channels. Then pass a draw_wait smaller than .0036, potentially as small as 0. For two strips of 70 pixels, I was able to pass 0.0001 and achieve over 400 FPS without graphical errors. 
+I would advise distributing your pixels as much as possible between the 8 channels. Then pass a draw_wait smaller than .0036, potentially as small as 0. For two strips of 70 pixels, I was able to pass 0.0001 and achieve over 400 FPS on a PI4 without graphical errors. 
 </li>
 <li>Figuring out an optimal draw_wait time might take some experimenting. You will know that your value is too low if you visually see frames getting skipped.
 </li>
