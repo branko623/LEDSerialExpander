@@ -1,9 +1,9 @@
 Python Raspberry Pi Serial Expander Board driver
 ======================
 
-This is a driver written in python and optimized with cython for the [Pixelblaze Output Expander Board](https://github.com/simap/pixelblaze_output_expander) for use on Raspberry Pi (it could work for other systems, but it has not been tested). 
+This is a driver written in python and optimized with cython for the [Pixelblaze Output Expander Board](https://github.com/simap/pixelblaze_output_expander) for use on Raspberry Pi (it could work for other systems with slight modifications, but this has not been tested). 
 
-The raspberry pi hardware is not optimized for tasks such as driving neopixels through its GPIO. Drivers exist such as neopixel_write, but cannot drive larger arrays or pass 100fps for smaller ones, and a lot of precious CPU cycles are lost in driving them. Also, you can only run one strip, the Expander board allows for up to 64. 
+The raspberry pi hardware is not optimized for tasks such as driving neopixels through its GPIO. Drivers exist such as neopixel_write, but cannot drive larger arrays or pass 100fps for smaller ones, and a lot of precious CPU cycles are lost in driving them. Also, you can only run one strip, the Expander board allows for up to 64 in certain setups.  
 
 This board makes use of the UART TX port on your device. Any raspberry pi with a serial interface can be used, as long as the port and baudrate that are passed are correct, and your UART is set up and working (Enable by going to sudo raspi-config -> interface options -> serial -> turn OFF serial terminal/turn ON serial interface -> reboot). After doing this, GPIO14 should be activiated for serial use. You will know that the expander board is recieving valid serial data if it begins blinking an orange LED. 
 
@@ -60,7 +60,7 @@ Other Parameters
 <li>
 <b> uart: </b>
 default: "/dev/ttyS0"
-This controls the uart tx port. Raspberry pi 3, 4, and zero W all use the default above. Others might use "/dev/ttyAMA0". 
+This controls the uart tx port. Raspberry pi 3, 4, and zero W will by default use "/dev/ttyS0". Others might use "/dev/ttyAMA0". 
 </li>
 
 <li>
@@ -74,13 +74,29 @@ The baudrate is the speed at which the serial connection operates. It has been d
 default: False
 If set to True, this will print the FPS being displayed every second to the console
 </li>
+
+<li>
+<b>draw_wait:</b>
+default: .0036 
+Time in seconds to wait after draw command is sent before new data gets passed. .0036 is mentioned as safe by board creator. This however tends to cap the framerate. See below for more details.
+</li>
 </ul>
 
 Notes on fast framerates:
 -------------------
-The smaller your largest strip, the higher the theoretical framerate you can get. With 50 per strip, you can achieve over 300fps with this board (if your math is efficient enough to output at this speed, python in itself has a lot of overhead). 
-
-Also keep in mind that the baudrate will bottleneck the framerate for larger arrays. Every pixel contains 24 (or 32 for RGBW) bits. Consider that (bits per pixel) * (number of pixels) * x  = (baudrate) * (.8). The .8 accounts for parity. Solving for x will give you the maximum framerate for your setup. It is possible for this to be higher, if you consider that you don't have to send every strip during a send. 
+<ul>
+<li>
+This driver is capable of displaying pixels at a relatively high framerates (300+ FPS). This might however take some expiriementing. For larger setups (such as over 150 pixels), the data transfer rate will ultimately influence how many times per second you can pass pixel data. For smaller setups, it is possible to push your setup over 300 FPS. In order to achieve this, a parameter was included that can be passed to override the board creator's recommended wait time after a draw command is sent to the board. (draw_wait)  
+</li>
+<li>
+I would advise distributing your pixels as much as possible between the 8 channels. Then pass a draw_wait smaller than .0036, potentially as small as 0. For two strips of 70 pixels, I was able to pass 0.0001 and achieve over 400 FPS without graphical errors. 
+</li>
+<li>Figuring out an optimal draw_wait time might take some experimenting. You will know that your value is too low if you visually see frames getting skipped.
+</li>
+<li> 
+Pure python in itself is rather inefficient when doing lots of computations repetitively, CPU time is wasted due to the global interpreter lock, type checking, etc.Keep this in mind when trying to push higher framerates.</li>
+<li>Consider wrapping the write() in a <code>multiprocessing</code> process, if your computations begin to overtake your CPU and influence the framerate. </li>
+</ul>
 
 Troubleshooting:
 ------------------- 

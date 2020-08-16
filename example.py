@@ -8,7 +8,7 @@ strips = { 3: {'size':40, 'order': 'RGB' ,'type':1},
            4: {'size':40, 'order': 'RGB' ,'type':1}}
 display = LEDSerialExpander.LEDSerialExpander(strips,fps_show=True,baud=2000000)
 
-tot = strips[7]['size'] + strips[0]['size']
+tot = sum(strips[k]['size'] for k in strips.keys())
 bpp = 3
 data = bytearray([0 for _ in range(tot*bpp)])
 

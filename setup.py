@@ -25,7 +25,7 @@ class sdist(_sdist):
     def run(self):
         # Make sure the compiled Cython files in the distribution are up-to-date
         from Cython.Build import cythonize
-        cythonize(extensions)
+        cythonize(extensions, compiler_directives={'language_level' : "3"})
         _sdist.run(self)
             
 cmdclass['sdist'] = sdist

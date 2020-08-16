@@ -1,8 +1,10 @@
 '''
-Driver for the LED Serial Expander Board for Pixelblaze
+Author: Branko Mirkovic
+
+This is a python driver for the LED Serial Expander Board for Pixelblaze created by Ben Hencke
 Lets you use board in similar fashion to that of neopixel_write()
 
-First Import: 
+First import the class: 
 
 from LEDSerialExpander import LEDSerialExpander
 
@@ -39,6 +41,7 @@ from cpython cimport array
 from libc.string cimport memcpy
 
 LARGEST_STRIP_BYTES = 2400
+DEBUG_LIGHTS = True
 
 CRC = [ 0x00000000, 0x77073096, 0xee0e612c,
     0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832,
@@ -113,10 +116,14 @@ class LEDSerialExpander:
     # uart: 3,4,zero w all use ttyS0, else ttyAMA0
     # baud: should be one of the standardized values
     # fps_show: shows fps counter
-    def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False):
+    # draw_wait: Time to wait after draw_all command before sending new data
+    def __init__(self,config, uart = "/dev/ttyS0", baud=2000000, fps_show = False, draw_wait = .0036):
         self.uart = uart
         self.baud = baud
         
+        #although the draw_all command takes 7.2 ms, data can be sent before it's completion. .0036 is mentioned as safe 
+        self.draw_wait = draw_wait 
+
         self.largest_channel = 0
         self.draw_time = time.time()
         
@@ -128,11 +135,10 @@ class LEDSerialExpander:
         self.__setup()
         
 
-    #one time setup run
+    #one time setup run, create the buffer
     def __setup(self):
         self.size = 0 #total pixels among all strips
         self.port = serial.Serial(self.uart, baudrate=self.baud, timeout=3)  # 3,4,zero w all use ttyS0, else ttyAMA0
-
         
         #individual channel headers setup
         self.headers = {}
@@ -186,27 +192,19 @@ class LEDSerialExpander:
                 instruction.extend(pack("<h",c['size'])) # number of pixels, 2 bytes, LITTLE ENDIAN
                 self.headers[channel] = header+instruction
                 
-            print (c)
-        print ("self.buffer after all that %s"%self.buffer_size)
         self.draw_all_offset = self.buffer_size
 
         #timing constants
-        self.draw_speed = .0072 #(self.largest_channel/LARGEST_STRIP_BYTES) * .0072 #creator mentioned that that draw command takes 7.2ms
-        #self.send_speed = (((self.size*3) + ((len(self.config) +1) *10 ))*8)/ (self.baud * 0.8) * .001 # time it takes to send full command (bits sent/buadrate)
-        #                   data bytes          amount of headers bytes   ^ bit              ^  start/stop to content bit ratio ^ .000001 timer
-        self.send_speed = (self.buffer_size*8) / (self.baud * 0.8) # time it takes in seconds for command to reach the board
+        self.send_speed = (self.buffer_size*8) / (self.baud * 0.8) # time it takes in seconds for full command to reach the board
         
         #draw_all command:
         self.draw_all = bytearray(b"UPXL") #magic start sequence
         self.draw_all.append (0x00) # channel ignored but needs to be here
         self.draw_all.append (0x02) # recordtype 1=ws2812 2=draw all
         
-        print ("Buffer size: %s :" %self.buffer_size)
         self.buffer = bytearray(self.buffer_size+10) #super important buffer declaration
         
         # this part copies headers and instructions to  the buffer. These headers are static
-        #cdef char* buf_pointer, header_pointer
-        #cdef int s
         for i,h in self.headers.items(): # traversing list of bytearrays, memcpy them into buffer
             start = self.config[i]['header_offset']
             end   = self.config[i]['header_offset']+self.config[i]['header_size']
@@ -220,8 +218,11 @@ class LEDSerialExpander:
         cdef unsigned char* bufstart = self.buffer
         bufstart+= self.draw_all_offset
         crc(bufstart,<int>6)
+
+        if DEBUG_LIGHTS:
+            print ("Buffer size: %s :" %self.buffer_size)
         
-    # main write:
+    # main write thats called by user:
     # data can be (dict of bytearrays) or (just one bytearray that gets seperated according to configuration)
     def write (self,data):
         cdef unsigned char* buf_pointer
@@ -237,7 +238,6 @@ class LEDSerialExpander:
                 self.fps = 0
             self.frametime = now
                 
-
         if isinstance(data,bytearray): # one bytearray 
 
             start = 0
@@ -257,16 +257,13 @@ class LEDSerialExpander:
 
                 start = end 
                 
-            
         elif isinstance(data,dict): # dict of bytearrays
 
             for channel, c in data.items(): #channel is int, c is bytearray of data
                 expected = self.config[channel]['data_bytes']
                 if len(c) != expected:
                     raise ValueError("Channel %s: %s bytes passed, %s expected "%(channel,len(c),expected))
-                #self.__instruction(c,channel)
                  
-                #print (' '.join('{:02x}'.format(x) for x in self.buffer))
                 buf_pointer = self.buffer
                 buf_pointer += self.config[channel]['data_offset']
                 data_pointer = c
@@ -281,37 +278,46 @@ class LEDSerialExpander:
         else:
             raise ValueError("pixel data can be a dict of bytearrays or one large bytearray with data in order of channels")
         
-        #print (' '.join('{:02x}'.format(x) for x in self.buffer))
-        #print ("size: %s "%len(self.buffer))
+        if DEBUG_LIGHTS:
+            print (' '.join('{:02x}'.format(x) for x in self.buffer))
+            print ("size: %s "%len(self.buffer))
         self.__draw()
         
-#DRAW_ALL command and __send
+    # Send all 
     def __draw(self): 
-        #self.__send(self.draw_all)
         
         #Timing
-        if self.send_speed > .0034: 
-            self.send_speed = .0034
-        when = (self.draw_time + self.draw_speed)-self.send_speed #when to send
+        #if self.send_speed > self.draw_wait: 
+        #    pass
+            #only reached if large amount of pixels is being sent. 
+            #wait for the appropriate time to send 
+            #print ("FIRST %s"%(self.send_speed - self.draw_wait))
+            #time.sleep(self.send_speed - self.draw_wait) 
+            
+
+        when = (self.draw_time + self.draw_wait) #when to send
         now = time.time()
-        #print ("when: %s"%when)
-        #print ("now: %s"%now)
-        #print ()
+        if DEBUG_LIGHTS:
+            print ("when: %s"%when)
+            print ("now: %s"%now)
+            print ("diff %s"%(when-now))
         if when > now:
             
-        #if self.draw_time >= now - self.draw_speed: # (self.largest_channel/160): # max this can be is 7.2ms, as largest_channel can be up to 720bytes
-            # wait = (self.draw_time + self.draw_speed - self.send_speed) - now
             wait = when - now
-            #print ("draw time %s"%self.draw_time)
-            #print ("draw speed %s"%self.draw_speed)
-            #print ("send speed %s"%self.send_speed)
-            #print ("wait %s"%wait)
+            if DEBUG_LIGHTS:
+                print ("draw time %s"%self.draw_time)
+                print ("draw speed %s"%self.draw_wait)
+                print ("send speed %s"%self.send_speed)
+                print ("wait %s"%wait)
+
             if wait < 0:
                 wait = 0
 
-            time.sleep(wait+.0003) #add cushion
+            # this will only be reached if the amount of pixels to be sent is low. 
+            # Wait until last draw command has enough time to get head start before sending new data 
+            time.sleep(wait) 
             
-        self.draw_time = time.time()
+        self.draw_time = time.time() + self.send_speed
         self.__send()
         
     #UART TX
