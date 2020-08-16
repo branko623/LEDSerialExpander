@@ -22316,7 +22316,7 @@ if (!__Pyx_RefNanny) {
  * from libc.string cimport memcpy
  * 
  * LARGEST_STRIP_BYTES = 2400             # <<<<<<<<<<<<<<
- * DEBUG_LIGHTS = True
+ * DEBUG_LIGHTS = False
  * 
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_LARGEST_STRIP_BYTES, __pyx_int_2400) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
@@ -22324,14 +22324,14 @@ if (!__Pyx_RefNanny) {
   /* "LEDSerialExpander.pyx":44
  * 
  * LARGEST_STRIP_BYTES = 2400
- * DEBUG_LIGHTS = True             # <<<<<<<<<<<<<<
+ * DEBUG_LIGHTS = False             # <<<<<<<<<<<<<<
  * 
  * CRC = [ 0x00000000, 0x77073096, 0xee0e612c,
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEBUG_LIGHTS, Py_True) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEBUG_LIGHTS, Py_False) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
 
   /* "LEDSerialExpander.pyx":46
- * DEBUG_LIGHTS = True
+ * DEBUG_LIGHTS = False
  * 
  * CRC = [ 0x00000000, 0x77073096, 0xee0e612c,             # <<<<<<<<<<<<<<
  *     0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832,

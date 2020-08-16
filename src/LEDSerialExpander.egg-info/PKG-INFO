@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: LEDSerialExpander
-Version: 0.2
+Version: 0.2.2
 Summary: Expander Board Python Driver
 Home-page: https://github.com/branko623/LEDSerialExpander
 Author: Branko Mirkovic
