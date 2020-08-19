@@ -52,7 +52,8 @@ data_dict = {0: data1,
 display.write(data_dict) 
 ```
 
-For a working example, check example.py
+For a working example, check the fast_example.py or safe_example.py
+
 
 Other Parameters
 -------------------
