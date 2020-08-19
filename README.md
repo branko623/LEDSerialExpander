@@ -96,7 +96,7 @@ I would advise distributing your pixels as much as possible between the 8 channe
 </li>
 <li> 
 Pure python in itself is rather inefficient when doing lots of computations repetitively, CPU time is wasted due to the global interpreter lock, type checking, etc.Keep this in mind when trying to push higher framerates.</li>
-<li>Consider wrapping the write() in a <code>multiprocessing</code> process, if your computations begin to overtake your CPU and influence the framerate. </li>
+<li>If you more than one core on your processor, consider wrapping the write() in a <code>multiprocessing</code> process, if your computations begin to overtake your CPU and influence the framerate. </li>
 </ul>
 
 Troubleshooting:
